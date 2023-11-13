@@ -11,6 +11,9 @@
 
 <body>
     @yield('content')
+
+    <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
 </body>
 
 </html>

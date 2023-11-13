@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/dosen', function(){
     return view('web.dashboards.dashboard');
 })->name('dosen-dashboard');
