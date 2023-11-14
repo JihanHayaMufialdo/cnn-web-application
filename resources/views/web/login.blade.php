@@ -2,7 +2,8 @@
 
 @section('content')
 
-<section class="bg-gray-50 dark:bg-gray-900">
+
+<section class="bg-gray-50 dark:bg-gray-900" id="login-wrapper">
     {{-- style="background-image: url('{{ asset('assets/img/bg.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;" --}}
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -31,7 +32,7 @@
                         </div>
                         <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Lupa Kata Sandi?</a>
                     </div>
-                    
+
                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Masuk</button>
                 </form>
             </div>
