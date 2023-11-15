@@ -17,15 +17,15 @@ class UserSeeder extends Seeder
     {
         User::create([
             'username'  => 'jihan',
-            'password'  => '1234',
+            'password'  => bcrypt('1234'),
             'nama'      => 'Jihan Haya M',
             'role'      => 'admin'
         ]);
 
         User::create([
-            'username'  => 'ilkomfmipa',
-            'password'  => '1234',
-            'nama'      => 'Didik Kurniawa',
+            'username'  => 'ilkom',
+            'password'  => bcrypt('4321'),
+            'nama'      => 'Didik Kurniawan',
             'role'      => 'dosen'
         ]);
 
