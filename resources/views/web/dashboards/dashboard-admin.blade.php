@@ -1,4 +1,4 @@
-@extends('layout.dashboard-layout')
+@extends('layout.dashboard-admin-layout')
 
 @section('main')
     <style>
@@ -25,7 +25,8 @@
         }
     </style>
 
-    {{-- Card --}}
+    {{-- Search --}}
+
     <form>
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class="relative">
@@ -43,6 +44,8 @@
                 class="text-white absolute end-2.5 bottom-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-2.5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
         </div>
     </form>
+
+    {{-- Card --}}
 
     <a href="#"
         class="block mt-5 max-w-xs p-16 bg-blue-300 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
@@ -88,7 +91,6 @@
     </div>
 
     {{-- Table --}}
-
 
     <div class="mt-10 relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
