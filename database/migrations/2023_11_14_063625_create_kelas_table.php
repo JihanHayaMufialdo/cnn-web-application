@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->unique();
-            $table->string('username');
-            $table->string('password');
+        Schema::create('kelas', function (Blueprint $table) {
+            $table->id();
             $table->string('nama');
-            $table->enum('role',['admin','dosen']);
-            $table->rememberToken();
+            $table->foreignId('id_matkul')->constrained('mata_kuliah')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('id_dosen')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->integer('kuota')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('kelas');
     }
 };

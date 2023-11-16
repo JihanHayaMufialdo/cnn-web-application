@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->unique();
-            $table->string('username');
-            $table->string('password');
-            $table->string('nama');
-            $table->enum('role',['admin','dosen']);
-            $table->rememberToken();
+        Schema::create('jadwal', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_kelas')->constrained('kelas')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->enum('hari',['Senin','Selasa','Rabu','Kamis','Jumat']);
+            $table->time('jam');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('jadwal');
     }
 };
