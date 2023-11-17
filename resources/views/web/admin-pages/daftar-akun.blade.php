@@ -23,20 +23,34 @@
                     class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search" required>
                 <button type="submit" id="search-button"
-                    class="text-white absolute end-2.5 bottom-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-2.5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                    class="text-white absolute end-2.5 bottom-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-2.5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cari</button>
             </div>
         </form>
 
         {{-- Button Add --}}
-        <a type="button" href="{{ route('form-tambah-akun') }}"
-            class="mt-5 active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Tambah</a>
+        <a type="button" href="{{ route('user.create') }}"
+            class="mt-5 active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Tambah Data</a>
     </div>
 
     {{-- Table --}}
     <div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="mb-3">
+            @if (session('error'))
+            <x-alert.error-alert message="{{session('error')}}"/>
+            @endif
+            @if (session('success'))
+            <x-alert.success-alert message="{{session('success')}}"/>
+            @endif
+        </div>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
+                    <th scope="col" class="px-6 py-3">
+                        <div class="flex items-center">
+                            No
+                            {{-- <a href="#"><span class="iconify" data-width="12" data-icon="icon-park-solid:sort"></span></a> --}}
+                        </div>
+                    </th>
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
                             Nama
@@ -50,196 +64,39 @@
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        ACTION
+                        AKSI
                     </th>
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $i = 1;
+                @endphp
+                @foreach ($data_dosen as $user)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
+                        {{$i++}}
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        {{$user->nama}}
                     </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="{{route('form-edit-akun')}}" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Microsoft Surface Pro
-                    </th>
                     <td class="px-6 py-4">
-                        White
+                        {{$user->nip ?? ''}}
                     </td>
                     <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
+                        <a href="{{route('user.edit', $user->id)}}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
                         </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
+                        <form action="{{route('user.destroy', $user->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="mt-3.5" onclick="return confirm('Anda yakin ingin menghapus data {{$user->nama}} ?')">
+                                <span class="iconify hover:text-neutral-300" data-width="25" data-icon="mdi:delete-outline"></span>
+                            </button>
+                        </form>
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Mouse 2
-                    </th>
-                    <td class="px-6 py-4">
-                        Black
-                    </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple Watch
-                    </th>
-                    <td class="px-6 py-4">
-                        Black
-                    </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple iMac
-                    </th>
-                    <td class="px-6 py-4">
-                        Silver
-                    </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple AirPods
-                    </th>
-                    <td class="px-6 py-4">
-                        White
-                    </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        iPad Pro
-                    </th>
-                    <td class="px-6 py-4">
-                        Gold
-                    </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Keyboard
-                    </th>
-                    <td class="px-6 py-4">
-                        Black
-                    </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Smart Folio iPad Air
-                    </th>
-                    <td class="px-6 py-4">
-                        Blue
-                    </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        AirTag
-                    </th>
-                    <td class="px-6 py-4">
-                        Silver
-                    </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
         <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
