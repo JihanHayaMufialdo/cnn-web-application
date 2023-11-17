@@ -13,6 +13,7 @@ class AuthController extends Controller
     }
 
     public function login_attempt(Request $request){
+
         if(!Auth::attempt($request->only(['username','password']))){
             return back()->with('error','Akun Pengguna atau Kata Sandi Anda tidak sesuai')->withInput($request->all());
         }

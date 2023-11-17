@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('daftar-akun')}}"
+                <a href="{{route('user.index')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="iconify" data-width="25" data-icon="fa6-solid:users"></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Daftar Akun</span>
@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{route('logout')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="iconify" data-width="25" data-icon="tabler:logout"></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Keluar</span>

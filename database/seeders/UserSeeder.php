@@ -23,9 +23,10 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'username'  => 'ilkom',
-            'password'  => bcrypt('4321'),
-            'nama'      => 'Didik Kurniawan',
+            'username'  => 'kajurilkom',
+            'password'  => bcrypt('kajurilkom'),
+            'nama'      => 'Didik Kurniawan, S.Si., M.T.',
+            'nip'       => '19800419 200501 1 004',
             'role'      => 'dosen'
         ]);
 
