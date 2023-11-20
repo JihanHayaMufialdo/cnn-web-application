@@ -23,4 +23,7 @@ class User extends Authenticatable
         'role'
     ];
 
+    public function kelas(){
+        return $this->hasMany(Kelas::class, 'id_dosen', 'id');
+    }
 }

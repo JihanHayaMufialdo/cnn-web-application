@@ -29,17 +29,18 @@
 
         {{-- Button Add --}}
         <a type="button" href="{{ route('user.create') }}"
-            class="mt-5 active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Tambah Data</a>
+            class="mt-5 active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Tambah
+            Data</a>
     </div>
 
     {{-- Table --}}
     <div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="mb-3">
             @if (session('error'))
-            <x-alert.error-alert message="{{session('error')}}"/>
+                <x-alert.error-alert message="{{ session('error') }}" />
             @endif
             @if (session('success'))
-            <x-alert.success-alert message="{{session('success')}}"/>
+                <x-alert.success-alert message="{{ session('success') }}" />
             @endif
         </div>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -54,13 +55,15 @@
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
                             Nama
-                            <a href="#"><span class="iconify" data-width="12" data-icon="icon-park-solid:sort"></span></a>
+                            <a href="#"><span class="iconify" data-width="12"
+                                    data-icon="icon-park-solid:sort"></span></a>
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
                             NIP
-                            <a href="#"><span class="iconify" data-width="12" data-icon="icon-park-solid:sort"></span></a>
+                            <a href="#"><span class="iconify" data-width="12"
+                                    data-icon="icon-park-solid:sort"></span></a>
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -69,38 +72,47 @@
                 </tr>
             </thead>
             <tbody>
+
                 @php
                     $i = 1;
                 @endphp
                 @foreach ($data_dosen as $user)
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$i++}}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{$user->nama}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{$user->nip ?? ''}}
-                    </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="{{route('user.edit', $user->id)}}" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <form action="{{route('user.destroy', $user->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="mt-3.5" onclick="return confirm('Anda yakin ingin menghapus data {{$user->nama}} ?')">
-                                <span class="iconify hover:text-neutral-300" data-width="25" data-icon="mdi:delete-outline"></span>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+                    {{-- @dd($user->kelas) --}}
+                    <tr
+                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $i++ }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ $user->nama }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $user->nip ?? '' }}
+                        </td>
+                        <td class="px-6 py-4">
+                            @foreach ($user->kelas as $kelas)
+                                {{ $kelas->nama ?? '' }} <br />
+                            @endforeach
+                        </td>
+                        <td class="px-6 py-4 flex items-center action-icons">
+                            <a href="{{ route('user.edit', $user->id) }}" class="">
+                                <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
+                            </a>
+                            <form action="{{ route('user.destroy', $user->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="mt-3.5"
+                                    onclick="return confirm('Anda yakin ingin menghapus data {{ $user->nama }} ?')">
+                                    <span class="iconify hover:text-neutral-300" data-width="25"
+                                        data-icon="mdi:delete-outline"></span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
-        <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
-            aria-label="Table navigation">
+        <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
             <span
                 class="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing
                 <span class="font-semibold text-gray-900 dark:text-white">1-10</span> of <span

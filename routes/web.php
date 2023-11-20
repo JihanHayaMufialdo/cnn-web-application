@@ -33,7 +33,9 @@ Route::get('/admin', function(){
     return view('web.dashboards.dashboard-admin');
 })->name('admin-dashboard');
 
-Route::resource('admin/user', UserController::class);
+Route::resources([
+    'admin/user' => UserController::class,
+]);
 
 // Route::controller(UserController::class)->group(function(){
 //     Route::get('/admin/daftar-akun', 'index')->name('daftar-akun');

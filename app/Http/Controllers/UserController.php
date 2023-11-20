@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\web\admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -17,13 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::where('role', 'dosen')->get();
-
-        $data = [
-            'data_dosen'  => $user,
-        ];
-
-        return view('web.admin-pages.daftar-akun', $data);
+        //
     }
 
     /**
@@ -33,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('web.admin-pages.form-tambah-akun');
+        //
     }
 
     /**
@@ -42,17 +33,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
-
-        $data['password'] = Hash::make($data['password']);
-
-        $user = new User($data);
-
-        $user->save();
-
-        return to_route('user.index')->with('success','Berhasil menambahkan akun dosen');
+        //
     }
 
     /**
@@ -61,9 +44,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
+
+    //  Routes Model Binding
     public function show(User $user)
     {
-        //
+        dd($user);
     }
 
     /**
@@ -74,11 +59,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $data = [
-            'user' => $user
-        ];
-
-        return view('web.admin-pages.form-edit-akun', $data);
+        //
     }
 
     /**
@@ -88,13 +69,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
-        $data = $request->validated();
-
-        $user->update($data);
-
-        return to_route('user.index')->with('success','Berhasil mengubah data dosen');
+        //
     }
 
     /**
@@ -105,8 +82,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
-
-        return to_route('user.index')->with('success','Berhasil menghapus data dosen');
+        //
     }
 }

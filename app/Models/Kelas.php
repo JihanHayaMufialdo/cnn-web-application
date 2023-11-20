@@ -17,4 +17,12 @@ class Kelas extends Model
         'id_dosen',
         'kuota'
     ];
+
+    public function dosen(){
+        return $this->belongsTo(User::class, 'id_dosen', 'id');
+    }
+
+    // public function mahasiswa(){
+    //     return $this->belongsToMany(Mahasiswa::class, 'kelas_mahasiswa', 'id_kelas', 'id_')
+    // }
 }
