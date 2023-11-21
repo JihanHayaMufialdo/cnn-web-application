@@ -25,6 +25,16 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+Route::resource('admin/user', UserController::class);
+
+Route::get('/admin/daftar-akun', function () {
+    return view('web.list-akun-pages.daftar-akun');
+})->name('daftar-akun');
+
+Route::get('/admin/daftar-akun/form-tambah-akun', function () {
+    return view('web.list-akun-pages.form-tambah-akun');
+})->name('form-tambah-akun');
+
 Route::get('/dosen', function(){
     return view('web.dashboards.dashboard-dosen');
 })->name('dosen-dashboard');
