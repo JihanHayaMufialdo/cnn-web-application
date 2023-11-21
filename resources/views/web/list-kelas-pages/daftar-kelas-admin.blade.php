@@ -4,66 +4,90 @@
     .action-icons a {
         margin-right: 0.5rem;
     }
+
+    @media (min-width: 768px) {
+        #default-search {
+            width: 50%;
+        }
+
+        #search-button {
+            right: calc(50% + 1rem);
+        }
+    }
 </style>
 
 @section('main')
-    <div class="flex flex-wrap items-center justify-between">
-        {{-- Search --}}
-        <form>
-            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-            <div class="relative">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                    </svg>
-                </div>
-                <input type="search" id="default-search"
-                    class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Search" required>
-                <button type="submit" id="search-button"
-                    class="text-white absolute end-2.5 bottom-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-2.5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-            </div>
-        </form>
+    {{-- Search --}}
+    <x-search.search />
 
-        {{-- Button Add --}}
-        <a type="button" href="{{ route('form-tambah-akun') }}"
-            class="mt-5 active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Tambah</a>
+    <div class="periode mb-6 mt-10 flex items-center">
+        <label for="role" class="block mb-2 mr-2 text-sm font-medium text-gray-900 dark:text-white">Periode</label>
+        <select id="dropdownSelect" name="dropdown"
+            class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-xs px-5 py-1.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
+            <option value="2023-ganjil">2023 ganjil</option>
+            <option value="2023-genap">2023 genap</option>
+        </select>
+    </div>
+
+    {{-- Button --}}
+    <div class="flex justify-end">
+        <a type="button" href="{{ route('admin.tambah-kelas') }}"
+            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Tambah</a>
     </div>
 
     {{-- Table --}}
-    <div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="mt-5 mb-5 relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
-                            Nama
-                            <a href="#"><span class="iconify" data-width="12" data-icon="icon-park-solid:sort"></span></a>
+                            Mata Kuliah
+                            <a href="#"><span class="iconify" data-width="12"
+                                    data-icon="icon-park-solid:sort"></span></a>
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
-                            NIP
-                            <a href="#"><span class="iconify" data-width="12" data-icon="icon-park-solid:sort"></span></a>
+                            Kelas
+                            <a href="#"><span class="iconify" data-width="12"
+                                    data-icon="icon-park-solid:sort"></span></a>
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        ACTION
+                        <div class="flex items-center">
+                            Semester
+                            <a href="#"><span class="iconify" data-width="12"
+                                    data-icon="icon-park-solid:sort"></span></a>
+                        </div>
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Jumlah Mahasiswa
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Aksi
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
+                        Logika
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        A
                     </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="{{route('form-edit-akun')}}" class="">
+                    <td class="px-6 py-4">
+                        1
+                    </td>
+                    <td class="px-6 py-4">
+                        50
+                    </td>
+                    <td class="px-6 py-4 flex items-center">
+                        <a href="{{route('admin.detail-kelas')}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
+                        </a>
+                        <a href="{{ route('form-edit-akun') }}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
                         </a>
                         <a href="" class="">
@@ -73,15 +97,23 @@
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Microsoft Surface Pro
+                        Logika
                     </th>
                     <td class="px-6 py-4">
-                        White
+                        A
                     </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
+                    <td class="px-6 py-4">
+                        1
+                    </td>
+                    <td class="px-6 py-4">
+                        45
+                    </td>
+                    <td class="px-6 py-4 flex items-center">
+                        <a href="{{route('admin.detail-kelas')}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
+                        </a>
+                        <a href="{{ route('form-edit-akun') }}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
                         </a>
                         <a href="" class="">
@@ -91,15 +123,23 @@
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Mouse 2
+                        Logika
                     </th>
                     <td class="px-6 py-4">
-                        Black
+                        B
                     </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
+                    <td class="px-6 py-4">
+                        1
+                    </td>
+                    <td class="px-6 py-4">
+                        50
+                    </td>
+                    <td class="px-6 py-4 flex items-center">
+                        <a href="{{route('admin.detail-kelas')}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
+                        </a>
+                        <a href="{{ route('form-edit-akun') }}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
                         </a>
                         <a href="" class="">
@@ -109,15 +149,101 @@
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple Watch
+                        Logika
                     </th>
                     <td class="px-6 py-4">
-                        Black
+                        C
                     </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
+                    <td class="px-6 py-4">
+                        1
+                    </td>
+                    <td class="px-6 py-4">
+                        50
+                    </td>
+                    <td class="px-6 py-4 flex items-center">
+                        <a href="{{route('admin.detail-kelas')}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
+                        </a>
+                        <a href="{{ route('form-edit-akun') }}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
+                        </a>
+                        <a href="" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25"
+                                data-icon="mdi:delete-outline"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Logika
+                    </th>
+                    <td class="px-6 py-4">
+                        D
+                    </td>
+                    <td class="px-6 py-4">
+                        1
+                    </td>
+                    <td class="px-6 py-4">
+                        50
+                    </td>
+                    <td class="px-6 py-4 flex items-center">
+                        <a href="{{route('admin.detail-kelas')}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
+                        </a>
+                        <a href="{{ route('form-edit-akun') }}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
+                        </a>
+                        <a href="" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25"
+                                data-icon="mdi:delete-outline"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Logika
+                    </th>
+                    <td class="px-6 py-4">
+                        A
+                    </td>
+                    <td class="px-6 py-4">
+                        1
+                    </td>
+                    <td class="px-6 py-4">
+                        50
+                    </td>
+                    <td class="px-6 py-4 flex items-center">
+                        <a href="{{route('admin.detail-kelas')}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
+                        </a>
+                        <a href="{{ route('form-edit-akun') }}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
+                        </a>
+                        <a href="" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25"
+                                data-icon="mdi:delete-outline"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Matematika Diskrit
+                    </th>
+                    <td class="px-6 py-4">
+                        A
+                    </td>
+                    <td class="px-6 py-4">
+                        1
+                    </td>
+                    <td class="px-6 py-4">
+                        50
+                    </td>
+                    <td class="px-6 py-4 flex items-center">
+                        <a href="{{route('admin.detail-kelas')}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
+                        </a>
+                        <a href="{{ route('form-edit-akun') }}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
                         </a>
                         <a href="" class="">
@@ -128,15 +254,23 @@
                 </tr>
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple iMac
+                        Matematika Diskrit
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        A
                     </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
+                    <td class="px-6 py-4">
+                        1
+                    </td>
+                    <td class="px-6 py-4">
+                        50
+                    </td>
+                    <td class="px-6 py-4 flex items-center">
+                        <a href="{{route('admin.detail-kelas')}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
+                        </a>
+                        <a href="{{ route('form-edit-akun') }}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
                         </a>
                         <a href="" class="">
@@ -147,15 +281,23 @@
                 </tr>
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple AirPods
+                        Matematika Diskrit
                     </th>
                     <td class="px-6 py-4">
-                        White
+                        A
                     </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
+                    <td class="px-6 py-4">
+                        1
+                    </td>
+                    <td class="px-6 py-4">
+                        50
+                    </td>
+                    <td class="px-6 py-4 flex items-center">
+                        <a href="{{route('admin.detail-kelas')}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
+                        </a>
+                        <a href="{{ route('form-edit-akun') }}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
                         </a>
                         <a href="" class="">
@@ -166,72 +308,23 @@
                 </tr>
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        iPad Pro
+                        Matematika Diskrit
                     </th>
                     <td class="px-6 py-4">
-                        Gold
+                        A
                     </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Keyboard
-                    </th>
                     <td class="px-6 py-4">
-                        Black
+                        1
                     </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
-                        </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Smart Folio iPad Air
-                    </th>
                     <td class="px-6 py-4">
-                        Blue
+                        50
                     </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
+                    <td class="px-6 py-4 flex items-center">
+                        <a href="{{route('admin.detail-kelas')}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                         </a>
-                        <a href="" class="">
-                            <span class="iconify hover:text-neutral-300" data-width="25"
-                                data-icon="mdi:delete-outline"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        AirTag
-                    </th>
-                    <td class="px-6 py-4">
-                        Silver
-                    </td>
-                    <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="#" class="">
+                        <a href="{{ route('form-edit-akun') }}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
                         </a>
                         <a href="" class="">

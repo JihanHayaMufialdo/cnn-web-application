@@ -5,7 +5,7 @@
         <x-sidebar.sidebar-dosen />
 
         <div class="flex-1 p-4 sm:ml-64">
-            <x-navbar.navbar-dosen />
+            <x-navbar.navbar />
 
             <div class="p-4 border-2 border-gray-200 rounded-lg dark:border-gray-700 mt-5 shadow">
                 @yield('main')
