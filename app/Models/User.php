@@ -19,7 +19,11 @@ class User extends Authenticatable
         'username',
         'password',
         'nama',
+        'nip',
         'role'
     ];
 
+    public function kelas(){
+        return $this->hasMany(Kelas::class, 'id_dosen', 'id');
+    }
 }

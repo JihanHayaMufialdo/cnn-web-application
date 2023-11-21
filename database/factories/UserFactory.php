@@ -23,6 +23,7 @@ class UserFactory extends Factory
             'username'  => fake()->userName(),
             'password'  => bcrypt('12345'),
             'nama'      => fake()->name(),
+            'nama'      => fake()->randomNumber(10),
             'role'      => 'dosen'
         ];
     }
