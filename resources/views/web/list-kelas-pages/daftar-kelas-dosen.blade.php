@@ -1,284 +1,250 @@
 @extends('layout.dashboard-admin-layout')
 
-@section('main')
-    <style>
-        @media (min-width: 768px) {
-            #default-search {
-                width: 50%;
-            }
+<style>
+    .action-icons a {
+        margin-right: 0.5rem;
+    }
 
-            #search-button {
-                right: calc(50% + 1rem);
-            }
-
-            .card-container {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-
-            .card {
-                max-width: calc(33.333% - 16px);
-                margin-top: 1.25rem;
-            }
-
+    @media (min-width: 768px) {
+        #default-search {
+            width: 50%;
         }
-    </style>
 
+        #search-button {
+            right: calc(50% + 1rem);
+        }
+    }
+</style>
+
+@section('main')
     {{-- Search --}}
     <x-search.search />
 
-    {{-- Card --}}
-
-    <a href="#"
-        class="block mt-5 max-w-xs p-16 bg-blue-300 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-        {{-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">lougdysagdy asdsgadyua asdgysgd
-        </h5>
-        <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of
-            2021 so far, in reverse chronological order.</p> --}}
-    </a>
-
-
-    <div class="card-container flex flex-col gap-4">
-        <a href="#"
-            class="card w-44 mt-5 p-10 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-            {{-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology
-                acquisitions
-                2021</h5> --}}
-            {{-- <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions
-                of
-                2021 so far, in reverse chronological order.</p> --}}
-        </a>
-        <a href="#"
-            class="card w-44 mt-5 p-10 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-            {{-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology
-                acquisitions
-                2021</h5> --}}
-            {{-- <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions
-                of
-                2021 so far, in reverse chronological order.</p> --}}
-        </a>
-        <a href="#"
-            class="card w-44 mt-5 p-10 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-            {{-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology
-                acquisitions
-                2021</h5> --}}
-            {{-- <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions
-                of
-                2021 so far, in reverse chronological order.</p> --}}
-        </a>
+    <div class="periode mb-6 mt-10 flex items-center">
+        <label for="role" class="block mb-2 mr-2 text-sm font-medium text-gray-900 dark:text-white">Periode</label>
+        <select id="dropdownSelect" name="dropdown"
+            class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-xs px-5 py-1.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
+            <option value="2023-ganjil">2023 ganjil</option>
+            <option value="2023-genap">2023 genap</option>
+        </select>
     </div>
 
     {{-- Table --}}
-
-    <div class="mt-10 relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="mt-10 mb-5 relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-
                     <th scope="col" class="px-6 py-3">
-                        Product name
+                        <div class="flex items-center">
+                            Mata Kuliah
+                            <a href="#"><span class="iconify" data-width="12"
+                                    data-icon="icon-park-solid:sort"></span></a>
+                        </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Color
+                        <div class="flex items-center">
+                            Kelas
+                            <a href="#"><span class="iconify" data-width="12"
+                                    data-icon="icon-park-solid:sort"></span></a>
+                        </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Category
+                        <div class="flex items-center">
+                            Semester
+                            <a href="#"><span class="iconify" data-width="12"
+                                    data-icon="icon-park-solid:sort"></span></a>
+                        </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Price
+                        Jumlah Mahasiswa
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Action
+                        Aksi
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
+                        Logika
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        A
                     </td>
                     <td class="px-6 py-4">
-                        Laptop
+                        1
                     </td>
                     <td class="px-6 py-4">
-                        $2999
+                        50
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="{{ route('admin.detail-kelas') }}"
+                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Microsoft Surface Pro
+                        Logika
                     </th>
                     <td class="px-6 py-4">
-                        White
+                        A
                     </td>
                     <td class="px-6 py-4">
-                        Laptop PC
+                        1
                     </td>
                     <td class="px-6 py-4">
-                        $1999
+                        45
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#"
+                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Mouse 2
+                        Logika
                     </th>
                     <td class="px-6 py-4">
-                        Black
+                        B
                     </td>
                     <td class="px-6 py-4">
-                        Accessories
+                        1
                     </td>
                     <td class="px-6 py-4">
-                        $99
+                        50
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#"
+                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple Watch
+                        Logika
                     </th>
                     <td class="px-6 py-4">
-                        Black
+                        C
                     </td>
                     <td class="px-6 py-4">
-                        Watches
+                        1
                     </td>
                     <td class="px-6 py-4">
-                        $199
+                        50
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#"
+                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple iMac
+                        Logika
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        D
                     </td>
                     <td class="px-6 py-4">
-                        PC
+                        1
                     </td>
                     <td class="px-6 py-4">
-                        $2999
+                        50
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#"
+                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple AirPods
+                        Logika
                     </th>
                     <td class="px-6 py-4">
-                        White
+                        A
                     </td>
                     <td class="px-6 py-4">
-                        Accessories
+                        1
                     </td>
                     <td class="px-6 py-4">
-                        $399
+                        50
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#"
+                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        iPad Pro
+                        Matematika Diskrit
                     </th>
                     <td class="px-6 py-4">
-                        Gold
+                        A
                     </td>
                     <td class="px-6 py-4">
-                        Tablet
+                        1
                     </td>
                     <td class="px-6 py-4">
-                        $699
+                        50
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#"
+                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
                     </td>
                 </tr>
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Keyboard
+                        Matematika Diskrit
                     </th>
                     <td class="px-6 py-4">
-                        Black
+                        A
                     </td>
                     <td class="px-6 py-4">
-                        Accessories
+                        1
                     </td>
                     <td class="px-6 py-4">
-                        $99
+                        50
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#"
+                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
                     </td>
                 </tr>
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Smart Folio iPad Air
+                        Matematika Diskrit
                     </th>
                     <td class="px-6 py-4">
-                        Blue
+                        A
                     </td>
                     <td class="px-6 py-4">
-                        Accessories
+                        1
                     </td>
                     <td class="px-6 py-4">
-                        $79
+                        50
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#"
+                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
                     </td>
                 </tr>
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        AirTag
+                        Matematika Diskrit
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        A
                     </td>
                     <td class="px-6 py-4">
-                        Accessories
+                        1
                     </td>
                     <td class="px-6 py-4">
-                        $29
+                        50
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#"
+                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
                     </td>
                 </tr>
             </tbody>
