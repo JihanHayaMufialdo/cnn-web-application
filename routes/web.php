@@ -25,7 +25,6 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::resource('admin/user', UserController::class);
 
 Route::get('/admin/daftar-akun', function () {
     return view('web.list-akun-pages.daftar-akun');
