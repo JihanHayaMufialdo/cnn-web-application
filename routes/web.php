@@ -77,3 +77,19 @@ Route::get('/admin/daftar-kelas/detail-kelas/edit-pertemuan', function(){
 Route::get('/admin/daftar-kelas/tambah-kelas', function(){
     return view('web.list-kelas-pages.form-tambah-kelas');
 })->name('admin.tambah-kelas');
+
+Route::get('/admin/daftar-kelas/edit-kelas', function(){
+    return view('web.list-kelas-pages.form-edit-kelas');
+})->name('admin.edit-kelas');
+
+Route::get('/admin/daftar-mahasiswa', function(){
+    return view('web.list-mahasiswa-pages.daftar-mahasiswa');
+})->name('admin.daftar-mahasiswa');
+
+Route::get('/admin/daftar-mahasiswa/tambah-mahasiswa', function(){
+    return view('web.list-mahasiswa-pages.form-tambah-mahasiswa');
+})->name('admin.tambah-mahasiswa');
+
+Route::get('/admin/daftar-mahasiswa/edit-mahasiswa', function(){
+    return view('web.list-mahasiswa-pages.form-edit-mahasiswa');
+})->name('admin.edit-mahasiswa');
