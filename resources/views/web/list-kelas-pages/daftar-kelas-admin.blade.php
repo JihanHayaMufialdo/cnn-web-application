@@ -108,7 +108,9 @@
                         {{$kelas->nama}}
                     </td>
                     <td class="px-6 py-4">
+
                         {{$kelas->dosen->nama}}
+
                     </td>
                     <td class="px-6 py-4">
                         {{$kelas->matakuliah->semester}}
@@ -132,7 +134,6 @@
                         </form>
                     </td>
                 </tr>
-
                 @empty
                 <tr>
                     <td colspan="7">Tidak Ada Data</td>

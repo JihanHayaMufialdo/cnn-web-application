@@ -1,3 +1,4 @@
+
 @extends('web.dashboards.dashboard-admin')
 
 @section('main')
@@ -121,6 +122,7 @@
             <a href="{{route('kelas.index')}}"
                 class="active:outline-none text-gray-500 bg-gray-100 hover:bg-gray-200 active:ring-4 active:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-600 dark:hover:bg-gray-700 dark:active:ring-gray-800">
                 Kembali</a>
+
         </div>
     </form>
 @endsection

@@ -67,7 +67,7 @@
         </div>
         <div class="mb-6">
             <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-            <select id="dropdownSelect" name="role"
+            <select id="dropdownSelect" name="dropdown" required
                 class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
                 {{-- <option value="admin">admin</option> --}}
                 <option value="dosen">dosen</option>
