@@ -16,16 +16,9 @@
         <ul class="space-y-2 font-medium">
             <li>
                 <a href="{{route('admin-dashboard')}}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-700 group">
                     <span class="iconify" data-width="25" data-icon="ic:round-dashboard"></span>
                     <span class="ms-3">Beranda</span>
-                </a>
-            </li>
-            <li>
-                <a href="#"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="iconify" data-width="25" data-icon="iconamoon:profile-fill"></span>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Profil</span>
                 </a>
             </li>
             <li>
@@ -47,13 +40,6 @@
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="iconify" data-width="25" data-icon="ph:student-bold"></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Daftar Mahasiswa</span>
-                </a>
-            </li>
-            <li>
-                <a href="#"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="iconify" data-width="25" data-icon="tabler:logout"></span>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Keluar</span>
                 </a>
             </li>
         </ul>

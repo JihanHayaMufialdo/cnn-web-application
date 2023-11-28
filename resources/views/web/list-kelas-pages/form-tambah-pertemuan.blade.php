@@ -1,4 +1,4 @@
-@extends('web.dashboards.dashboard-admin')
+@extends('layout.dashboard-dosen-layout')
 
 @section('main')
     <form>
@@ -90,7 +90,7 @@
         <div class="flex justify-end space-x-3 mt-5">
             <a href="#"
                 class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Tambah</a>
-            <a href="{{ route('admin.detail-kelas') }}"
+            <a href="{{ route('dosen.detail-kelas') }}"
                 class="active:outline-none text-gray-500 bg-gray-100 hover:bg-gray-200 active:ring-4 active:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-600 dark:hover:bg-gray-700 dark:active:ring-gray-800">Kembali</a>
         </div>
     </form>
