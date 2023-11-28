@@ -20,6 +20,7 @@ class KelasController extends Controller
         // $user = [];
         $data = [
             'data_kelas'  => $kelas,
+            'title_page'   => 'Daftar Kelas'
         ];
 
         return view('web.list-kelas-pages.daftar-kelas-admin', $data);
@@ -32,7 +33,11 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return view('web.list-kelas-pages.form-tambah-kelas');
+        $data = [
+            'title_page'   => 'Tambah Data Kelas'
+        ];
+
+        return view('web.list-kelas-pages.form-tambah-kelas', $data);
     }
 
     /**
@@ -87,7 +92,8 @@ class KelasController extends Controller
     public function edit(Kelas $kelas)
     {
         $data = [
-            'kelas' => $kelas
+            'kelas' => $kelas,
+            'title_page'   => 'Ubah Data Kelas'
         ];
 
         return view('web.list-kelas-pages.form-edit-kelas', $data);

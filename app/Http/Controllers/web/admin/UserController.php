@@ -21,6 +21,7 @@ class UserController extends Controller
         // $user = [];
         $data = [
             'data_dosen'  => $user,
+            'title_page'  => 'Daftar Akun'
         ];
 
         return view('web.list-akun-pages.daftar-akun', $data);
@@ -33,7 +34,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('web.list-akun-pages.form-tambah-akun');
+        $data = [
+            'title_page'  => 'Tambah Data Akun'
+        ];
+        return view('web.list-akun-pages.form-tambah-akun', $data);
     }
 
     /**
@@ -75,7 +79,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $data = [
-            'user' => $user
+            'user' => $user,
+            'title_page' => 'Ubah Data Akun'
         ];
 
         return view('web.list-akun-pages.form-edit-akun', $data);

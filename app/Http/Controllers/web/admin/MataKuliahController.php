@@ -20,6 +20,7 @@ class MataKuliahController extends Controller
         // $user = [];
         $data = [
             'mata_kuliah'  => $matakuliah,
+            'title_page'   => 'Daftar Mata Kuliah'
         ];
 
         return view('web.list-matkul-pages.matkul-index', $data);
@@ -32,7 +33,11 @@ class MataKuliahController extends Controller
      */
     public function create()
     {
-        return view('web.list-matkul-pages.matkul-create');
+        $data = [
+            'title_page'   => 'Tambah Data Mata Kuliah'
+        ];
+
+        return view('web.list-matkul-pages.matkul-create', $data);
     }
 
     /**
@@ -73,7 +78,8 @@ class MataKuliahController extends Controller
     {
         // dd($matakuliah);
         $data = [
-            'matakuliah' => $matakuliah
+            'matakuliah' => $matakuliah,
+            'title_page'   => 'Ubah Data Mata Kuliah'
         ];
 
         return view('web.list-matkul-pages.matkul-edit', $data);
