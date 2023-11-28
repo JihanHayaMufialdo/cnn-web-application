@@ -1,32 +1,22 @@
 @extends('layout.dashboard-dosen-layout')
 
-<style>
-    .action-icons a {
-        margin-right: 0.5rem;
-    }
-
-    @media (min-width: 768px) {
-        #default-search {
+@section('main')
+    <style>
+        .search {
             width: 50%;
         }
+    </style>
+    <div class="flex flex-wrap items-center justify-between">
+        <x-search.search />
 
-        #search-button {
-            right: calc(50% + 1rem);
-        }
-    }
-</style>
-
-@section('main')
-    {{-- Search --}}
-    <x-search.search />
-
-    <div class="periode mb-6 mt-10 flex items-center">
-        <label for="role" class="block mb-2 mr-2 text-sm font-medium text-gray-900 dark:text-white">Periode</label>
-        <select id="dropdownSelect" name="dropdown"
-            class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-xs px-5 py-1.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
-            <option value="2023-ganjil">2023 ganjil</option>
-            <option value="2023-genap">2023 genap</option>
-        </select>
+        <div class="mb-6">
+            <label for="dosen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen Pengajar</label>
+            <select id="dropdownSelect" name="dropdown" required
+                class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+            </select>
+        </div>
     </div>
 
     {{-- Table --}}
@@ -36,27 +26,17 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
-                            Mata Kuliah
+                            NPM
                             <a href="#"><span class="iconify" data-width="12"
                                     data-icon="icon-park-solid:sort"></span></a>
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
-                            Kelas
+                            Nama
                             <a href="#"><span class="iconify" data-width="12"
                                     data-icon="icon-park-solid:sort"></span></a>
                         </div>
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        <div class="flex items-center">
-                            Semester
-                            <a href="#"><span class="iconify" data-width="12"
-                                    data-icon="icon-park-solid:sort"></span></a>
-                        </div>
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Jumlah Mahasiswa
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Aksi
@@ -66,184 +46,113 @@
             <tbody>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Logika
+                        081211212
                     </th>
                     <td class="px-6 py-4">
-                        A
+                        Agus
                     </td>
-                    <td class="px-6 py-4">
-                        1
-                    </td>
-                    <td class="px-6 py-4">
-                        50
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('dosen.detail-kelas') }}"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
+                    <td href="#" class="">
+                        <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Logika
+                        081211212
                     </th>
                     <td class="px-6 py-4">
-                        A
+                        Agus
                     </td>
-                    <td class="px-6 py-4">
-                        1
-                    </td>
-                    <td class="px-6 py-4">
-                        45
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('dosen.detail-kelas') }}"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
+                    <td href="#" class="">
+                        <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Logika
+                        081211212
                     </th>
                     <td class="px-6 py-4">
-                        B
+                        Agus
                     </td>
-                    <td class="px-6 py-4">
-                        1
-                    </td>
-                    <td class="px-6 py-4">
-                        50
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('dosen.detail-kelas') }}"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
+                    <td href="#" class="">
+                        <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Logika
+                        081211212
                     </th>
                     <td class="px-6 py-4">
-                        C
+                        Agus
                     </td>
-                    <td class="px-6 py-4">
-                        1
-                    </td>
-                    <td class="px-6 py-4">
-                        50
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('dosen.detail-kelas') }}"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
+                    <td href="#" class="">
+                        <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Logika
+                        081211212
                     </th>
                     <td class="px-6 py-4">
-                        D
+                        Agus
                     </td>
-                    <td class="px-6 py-4">
-                        1
-                    </td>
-                    <td class="px-6 py-4">
-                        50
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('dosen.detail-kelas') }}"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
+                    <td href="#" class="">
+                        <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Logika
+                        081211212
                     </th>
                     <td class="px-6 py-4">
-                        A
+                        Agus
                     </td>
-                    <td class="px-6 py-4">
-                        1
-                    </td>
-                    <td class="px-6 py-4">
-                        50
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('dosen.detail-kelas') }}"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
+                    <td href="#" class="">
+                        <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Matematika Diskrit
+                        081211212
                     </th>
                     <td class="px-6 py-4">
-                        A
+                        Agus
                     </td>
-                    <td class="px-6 py-4">
-                        1
-                    </td>
-                    <td class="px-6 py-4">
-                        50
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('dosen.detail-kelas') }}"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
+                    <td href="#" class="">
+                        <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Matematika Diskrit
+                        081211212
                     </th>
                     <td class="px-6 py-4">
-                        A
+                        Agus
                     </td>
-                    <td class="px-6 py-4">
-                        1
+                    <td href="#" class="">
+                        <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        081211212
+                    </th>
                     <td class="px-6 py-4">
-                        50
+                        Agus
                     </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('dosen.detail-kelas') }}"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
+                    <td href="#" class="">
+                        <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Matematika Diskrit
+                        081211212
                     </th>
                     <td class="px-6 py-4">
-                        A
+                        Agus
                     </td>
-                    <td class="px-6 py-4">
-                        1
-                    </td>
-                    <td class="px-6 py-4">
-                        50
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('dosen.detail-kelas') }}"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Matematika Diskrit
-                    </th>
-                    <td class="px-6 py-4">
-                        A
-                    </td>
-                    <td class="px-6 py-4">
-                        1
-                    </td>
-                    <td class="px-6 py-4">
-                        50
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('dosen.detail-kelas') }}"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
+                    <td href="#" class="">
+                        <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
             </tbody>

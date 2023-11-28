@@ -27,7 +27,8 @@ Route::controller(AuthController::class)->group(function(){
 
 
 Route::get('/admin/daftar-akun', function () {
-    return view('web.list-akun-pages.daftar-akun');
+    $data = ['title_page' => 'Daftar Akun'];
+    return view('web.list-akun-pages.daftar-akun', $data);
 })->name('daftar-akun');
 
 Route::get('/admin/daftar-akun/form-tambah-akun', function () {
@@ -35,11 +36,13 @@ Route::get('/admin/daftar-akun/form-tambah-akun', function () {
 })->name('form-tambah-akun');
 
 Route::get('/dosen', function(){
-    return view('web.dashboards.dashboard-dosen');
+    $data = ['title_page' => 'Dashboard'];
+    return view('web.dashboards.dashboard-dosen', $data);
 })->name('dosen-dashboard');
 
 Route::get('/admin', function(){
-    return view('web.dashboards.dashboard-admin');
+    $data = ['title_page' => 'Dashboard'];
+    return view('web.dashboards.dashboard-admin', $data);
 })->name('admin-dashboard');
 
 Route::resources([
@@ -59,20 +62,44 @@ Route::get('/admin/daftar-akun/form-edit-akun', function(){
 })->name('form-edit-akun');
 
 Route::get('/admin/daftar-kelas', function(){
-    return view('web.list-kelas-pages.daftar-kelas-admin');
+    $data = ['title_page' => 'Daftar Kelas'];
+    return view('web.list-kelas-pages.daftar-kelas-admin', $data);
 })->name('admin.daftar-kelas');
 
+Route::get('/dosen/daftar-kelas', function(){
+    $data = ['title_page' => 'Daftar Kelas'];
+    return view('web.list-kelas-pages.daftar-kelas-dosen', $data);
+})->name('dosen.daftar-kelas');
+
 Route::get('/admin/daftar-kelas/detail-kelas', function(){
-    return view('web.list-kelas-pages.detail-kelas-admin');
+    $data = ['title_page' => 'Daftar Kelas'];
+    return view('web.list-kelas-pages.detail-kelas-admin', $data);
 })->name('admin.detail-kelas');
 
-Route::get('/admin/daftar-kelas/detail-kelas/tambah-pertemuan', function(){
-    return view('web.list-kelas-pages.form-tambah-pertemuan');
-})->name('admin.tambah-pertemuan');
+Route::get('/dosen/daftar-kelas/detail-kelas', function(){
+    $data = ['title_page' => 'Daftar Kelas'];
+    return view('web.list-kelas-pages.detail-kelas-dosen', $data);
+})->name('dosen.detail-kelas');
 
-Route::get('/admin/daftar-kelas/detail-kelas/edit-pertemuan', function(){
-    return view('web.list-kelas-pages.form-edit-pertemuan');
-})->name('admin.edit-pertemuan');
+Route::get('/dosen/daftar-kelas/detail-kelas/tambah-pertemuan', function(){
+    $data = ['title_page' => 'Daftar Kelas'];
+    return view('web.list-kelas-pages.form-tambah-pertemuan', $data);
+})->name('tambah-pertemuan');
+
+Route::get('/dosen/daftar-kelas/detail-kelas/edit-pertemuan', function(){
+    $data = ['title_page' => 'Daftar Kelas'];
+    return view('web.list-kelas-pages.form-edit-pertemuan', $data);
+})->name('edit-pertemuan');
+
+Route::get('/dosen/daftar-kelas/detail-kelas/edit-pertemuan/rekam-kehadiran', function(){
+    $data = ['title_page' => 'Daftar Kelas'];
+    return view('web.list-kelas-pages.rekam-kehadiran', $data);
+})->name('rekam-kehadiran');
+
+Route::get('/dosen/daftar-kelas/detail-kelas/mahasiswa-kelas', function(){
+    $data = ['title_page' => 'Daftar Kelas'];
+    return view('web.list-kelas-pages.mahasiswa-kelas', $data);
+})->name('mahasiswa-kelas');
 
 Route::get('/admin/daftar-kelas/tambah-kelas', function(){
     return view('web.list-kelas-pages.form-tambah-kelas');

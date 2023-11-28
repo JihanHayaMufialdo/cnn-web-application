@@ -1,8 +1,12 @@
-@extends('web.dashboards.dashboard-admin')
+@extends('layout.dashboard-dosen-layout')
 
 @section('main')
     <form>
-        <div class="grid md:grid-cols-2 md:gap-6">
+        <a href="{{route('rekam-kehadiran')}}"
+            class="active:outline-none text-black bg-gray-100 hover:bg-gray-200 active:ring-4 active:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-600 dark:hover:bg-gray-700 dark:active:ring-gray-800">Rekam
+            Kehadiran</a>
+
+        <div class="mt-8 grid md:grid-cols-2 md:gap-6">
             <div class="mb-6 ">
                 <label for="pertemuan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pertemuan
                     Ke-</label>
@@ -79,7 +83,8 @@
         </div>
 
         <div class="mb-6">
-            <label for="dosen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen Pengajar</label>
+            <label for="dosen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen
+                Pengajar</label>
             <select id="dropdownSelect" name="dropdown" required
                 class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
                 <option value="admin">Pak Kamal 2134361461346</option>
@@ -89,8 +94,8 @@
 
         <div class="flex justify-end space-x-3 mt-5">
             <a href="#"
-                class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Tambah</a>
-            <a href="{{ route('admin.detail-kelas') }}"
+                class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Simpan</a>
+            <a href="{{ route('dosen.detail-kelas') }}"
                 class="active:outline-none text-gray-500 bg-gray-100 hover:bg-gray-200 active:ring-4 active:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-600 dark:hover:bg-gray-700 dark:active:ring-gray-800">Kembali</a>
         </div>
     </form>
