@@ -15,11 +15,14 @@ class MataKuliahSeeder extends Seeder
      */
     public function run()
     {
-        // MataKuliah::create([
-        //     'nama_mk' => 'Dasar-Dasar Pemrograman',
-        //     'kode_mk' => 'COM12345'
-        // ]);
+        MataKuliah::create([
+            'nama_mk' => 'Dasar-Dasar Pemrograman',
+            'kode_mk' => 'COM12345',
+            'semester' => '1',
+            'sks' => 3,
+            'status' => 'W'
+        ]);
 
-        MataKuliah::factory(1)->create();
+        // MataKuliah::factory(1)->create();
     }
 }

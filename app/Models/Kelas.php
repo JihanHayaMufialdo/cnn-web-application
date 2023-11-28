@@ -15,6 +15,8 @@ class Kelas extends Model
         'nama',
         'id_matkul',
         'id_dosen',
+        'periode',
+        'kurikulum',
         'kuota'
     ];
 
@@ -22,7 +24,30 @@ class Kelas extends Model
         return $this->belongsTo(User::class, 'id_dosen', 'id');
     }
 
-    // public function mahasiswa(){
-    //     return $this->belongsToMany(Mahasiswa::class, 'kelas_mahasiswa', 'id_kelas', 'id_')
+    public function matakuliah(){
+        return $this->belongsTo(MataKuliah::class, 'id_matkul', 'id');
+    }
+
+    public static function getPeriodeValues(){
+        return ['2023 Ganjil','2023 Genap'];
+    }
+
+    public static function getKurikulumValues(){
+        return ['2020'];
+    }
+
+    public static function getMataKuliahValues(){
+        $mataKuliahValues = MataKuliah::pluck('nama_mk', 'id');
+        return $mataKuliahValues;
+    }
+
+    public static function getDosenValues(){
+        $dosenValues = User::where('role', 'dosen')->pluck('nama', 'id');
+        return $dosenValues;
+    }
+
+    // public static function getSemesterValues(){
+    //     $semesterValues = MataKuliah::pluck('semester', 'id');
+    //     return $semesterValues;
     // }
 }

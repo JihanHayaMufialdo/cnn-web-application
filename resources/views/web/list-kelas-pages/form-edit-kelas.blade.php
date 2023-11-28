@@ -1,26 +1,36 @@
 @extends('web.dashboards.dashboard-admin')
 
 @section('main')
-    <form action="{{route('kelas.store')}}" method="POST">
+    <form action="{{route('kelas.update', $kelas->id)}}" method="POST">
         @csrf
+        @method('PUT')
         <div class="mb-2">
             <label for="id_matkul" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Mata Kuliah
             </label>
             <select id="dropdownSelect" name="id_matkul"
-                class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800
-                @error('id_matkul') border-red-500 @enderror">
-                <option value="{{old('id_matkul')}}">Pilih mata kuliah</option>
-                @foreach (App\Models\Kelas::getMataKuliahValues() as $id => $nama_mk)
-                    <option value="{{ $id }}">{{ $nama_mk }}</option>
-                @endforeach
+            class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800
+            @error('id_matkul') border-red-500 @enderror">
+            <option value="{{ (old('id_matkul') ?? $kelas->id_matkul) ? '' : 'selected' }}">Pilih Mata Kuliah</option>
+            @foreach (App\Models\Kelas::getMataKuliahValues() as $id => $nama_mk)
+                <option value="{{ $id }}" {{ (old('id_matkul') ?? $kelas->id_matkul) == $id ? 'selected' : '' }}>
+                    {{ $nama_mk }}
+                </option>
+            @endforeach
             </select>
-        </div>
-        @error('id_matkul')
-        <div class="text-red-500 text-sm mb-2">
-            {{$message}}
-        </div>
-        @enderror
+            @error('id_matkul')
+                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+            @enderror
+            {{-- <select id="dropdownSelect" name="semester"
+            class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800
+            @error('semester') border-red-500 @enderror">
+            <option value="{{ (old('semester') ?? $matakuliah->semester) ? '' : 'selected' }}">Pilih semester</option>
+            @foreach (App\Models\MataKuliah::getSemesterValues() as $semester)
+                <option value="{{ $semester }}" {{ (old('semester') ?? $matakuliah->semester) == $semester ? 'selected' : '' }}>
+                    {{ $semester }}
+                </option>
+            @endforeach
+        </select> --}}
         <div class="mb-2">
             <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Kelas

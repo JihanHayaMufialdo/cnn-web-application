@@ -17,13 +17,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::where('role', 'dosen')->get();
-
+        $user = User::where('role', 'dosen')->select('id','nama','nip')->get();
+        // $user = [];
         $data = [
             'data_dosen'  => $user,
         ];
 
-        return view('web.admin-pages.daftar-akun', $data);
+        return view('web.list-akun-pages.daftar-akun', $data);
     }
 
     /**
@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('web.admin-pages.form-tambah-akun');
+        return view('web.list-akun-pages.form-tambah-akun');
     }
 
     /**
@@ -46,7 +46,7 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        $data['password'] = Hash::make($data['password']);
+        $data['password'] = bcrypt($data['password']);
 
         $user = new User($data);
 
@@ -78,7 +78,7 @@ class UserController extends Controller
             'user' => $user
         ];
 
-        return view('web.admin-pages.form-edit-akun', $data);
+        return view('web.list-akun-pages.form-edit-akun', $data);
     }
 
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $data = $request->validated();
+        $data =$request->validated();
 
         $user->update($data);
 

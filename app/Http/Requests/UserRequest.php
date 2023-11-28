@@ -41,7 +41,7 @@ class UserRequest extends FormRequest
             $rules += [
                 'username' => 'required|string|unique:App\Models\User,username',
                 'password' => 'required|string|confirmed',
-                'role'      => 'required|string|in:dosen',
+                'role'     => 'required|string|in:dosen',
             ];
         }
 
