@@ -22,14 +22,28 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('daftar-akun')}}"
+                <a href="#"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span class="iconify" data-width="25" data-icon="iconamoon:profile-fill"></span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Profil</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('user.index')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="iconify" data-width="25" data-icon="fa6-solid:users"></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Daftar Akun</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.daftar-kelas')}}"
+                <a href="{{route('matakuliah.index')}}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    {{-- <span class="iconify" data-width="25" data-icon="fa6-solid:users"></span> --}}
+                    <span class="flex-1 ms-3 whitespace-nowrap">Daftar Mata Kuliah</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('kelas.index')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="iconify" data-width="25" data-icon="ic:round-class"></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Daftar Kelas</span>

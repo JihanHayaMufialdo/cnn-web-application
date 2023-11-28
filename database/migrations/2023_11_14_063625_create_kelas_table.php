@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nama');
             $table->foreignId('id_matkul')->constrained('mata_kuliah')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('id_dosen')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->enum('periode',['2023 Genap','2023 Ganjil']);
+            $table->enum('kurikulum',['2020']);
             $table->integer('kuota')->default(0);
             $table->timestamps();
         });

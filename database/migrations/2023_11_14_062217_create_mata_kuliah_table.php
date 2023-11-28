@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nama_mk');
             $table->string('kode_mk')->unique();
+            $table->enum('semester',['1','2','3','4','5','6','7','8']);
+            $table->integer('sks')->nullable();
+            $table->enum('status',['W','P'])->nullable();
             $table->timestamps();
         });
     }

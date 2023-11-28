@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\web\admin\KelasController;
+use App\Http\Controllers\web\admin\MataKuliahController;
 use App\Http\Controllers\web\admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,16 +48,18 @@ Route::get('/admin', function(){
 })->name('admin-dashboard');
 
 Route::resources([
-    'admin/user' => UserController::class,
+    'admin/user'        => UserController::class,
+    'admin/matakuliah'  => MataKuliahController::class,
+    'admin/kelas'       => KelasController::class
 ]);
 
 // Route::controller(UserController::class)->group(function(){
 //     Route::get('/admin/daftar-akun', 'index')->name('daftar-akun');
 // });
 
-// Route::get('/admin/daftar-akun/form-tambah-akun', function(){
-//     return view('web.admin-pages.form-tambah-akun');
-// })->name('form-tambah-akun');
+Route::get('/admin/daftar-akun/form-tambah-akun', function(){
+    return view('web.admin-pages.form-tambah-akun');
+})->name('form-tambah-akun');
 
 Route::get('/admin/daftar-akun/form-edit-akun', function(){
     return view('web.list-akun-pages.form-edit-akun');
