@@ -5,12 +5,16 @@ module.exports = {
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "./node_modules/flowbite/**/*.js",
-  ],
-  theme: {
-    extend: {},
-  },
+    ],
+    theme: {
+        extend: {
+            fontFamily: {
+                poppins: ['Poppins', 'sans-serif'],
+            },
+        },
+    },
     plugins: [
         require('flowbite/plugin'),
-  ],
+    ],
 }
 
