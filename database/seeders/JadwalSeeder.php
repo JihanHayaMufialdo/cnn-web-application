@@ -16,7 +16,7 @@ class JadwalSeeder extends Seeder
     public function run()
     {
         Jadwal::create([
-            'id_kelas'  => 2,
+            'id_kelas'  => 1,
             'hari'      => 'Senin',
             'mulai'     => '09:20',
             'selesai'   => '11:00',
