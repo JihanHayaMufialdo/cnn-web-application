@@ -15,4 +15,17 @@ class KelasMahasiswa extends Model
         'id_kelas',
         'id_mahasiswa'
     ];
+
+    public function kelas(){
+        return $this->belongsTo(Kelas::class, 'id_kelas', 'id');
+    }
+
+    public function mahasiswa(){
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+    }
+
+    public static function getMahasiswaValues(){
+        $mahasiswaValues = Mahasiswa::pluck('nama', 'id');
+        return $mahasiswaValues;
+    }
 }

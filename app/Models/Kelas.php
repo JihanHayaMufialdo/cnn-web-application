@@ -28,6 +28,14 @@ class Kelas extends Model
         return $this->belongsTo(MataKuliah::class, 'id_matkul', 'id');
     }
 
+    public function kelasmahasiswa(){
+        return $this->hasMany(KelasMahasiswa::class, 'id_kelas', 'id');
+    }
+
+    public function jadwal(){
+        return $this->hasMany(Jadwal::class, 'id_kelas','id');
+    }
+
     public static function getPeriodeValues(){
         return ['2023 Ganjil','2023 Genap'];
     }

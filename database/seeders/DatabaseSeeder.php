@@ -18,10 +18,11 @@ class DatabaseSeeder extends Seeder
             // MahasiswaSeeder::class,
             // UserSeeder::class,
             // MataKuliahSeeder::class,
-            KelasSeeder::class,
+            // KelasSeeder::class,
             // KelasMahasiswaSeeder::class,
             // JadwalSeeder::class,
-            // PresensiSeeder::class
+            // PresensiSeeder::class,
+            // PertemuanSeeder::class
         ]);
     }
 }

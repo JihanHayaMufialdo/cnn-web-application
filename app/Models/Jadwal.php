@@ -14,6 +14,41 @@ class Jadwal extends Model
     protected $fillable = [
         'id_kelas',
         'hari',
-        'jam'
+        'mulai',
+        'selesai',
+        'ruangan',
+        'jenis'
     ];
+
+    public function kelas(){
+        return $this->belongsTo(Kelas::class, 'id_kelas', 'id');
+    }
+
+    public static function getKelasValues()
+    {
+        $jadwalValues = Jadwal::with('kelas.matakuliah')->get();
+
+        $kelasOptions = $jadwalValues->mapWithKeys(function ($jadwal) {
+            return [
+                $jadwal->kelas->id => $jadwal->kelas->matakuliah->nama_mk . ' - ' . $jadwal->kelas->nama
+            ];
+        });
+
+        return $kelasOptions;
+    }
+
+    public static function getHariValues(){
+        return ['Senin','Selasa','Rabu','Kamis','Jumat'];
+    }
+
+    public static function getJenisValues(){
+        return ['T','P'];
+    }
+
+    public static function getRuanganValues(){
+        return ['GIK L1A','GIK L1B','GIK L1C','GIK L2','MIPA T L1A','MIPA T L1B',
+                'LAB RPL','LAB R1','LAB R2','LAB R3','LAB R4'];
+    }
+
+
 }

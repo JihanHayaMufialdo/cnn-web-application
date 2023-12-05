@@ -18,7 +18,7 @@ class KelasSeeder extends Seeder
         Kelas::create([
             'nama'      => 'AB',
             'id_matkul' => '1',
-            'id_dosen'  => '9ab60e4f-2e6b-4451-93c8-a5a28e804a81',
+            'id_dosen'  => '9ac6396d-675b-4cc3-8762-f9c8020868e6',
             'periode'   => '2023 Ganjil',
             'kurikulum' => '2020',
             'kuota'     => '50'

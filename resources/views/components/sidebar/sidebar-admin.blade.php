@@ -56,7 +56,7 @@
             <li>
                 <a href="{{ route('matakuliah.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="iconify" data-width="25" data-icon="ph:book-fill"></span>
+                    <span class="iconify" data-width="25" data-icon="ion:book-sharp"></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Daftar Mata Kuliah</span>
                 </a>
             </li>
@@ -68,6 +68,13 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('jadwal.index')}}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span class="iconify" data-width="25" data-icon="mingcute:time-fill"></span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Daftar Jadwal</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.daftar-mahasiswa') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="iconify" data-width="25" data-icon="ph:student-bold"></span>
@@ -75,9 +82,9 @@
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{route('logout')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="iconify" data-width="25" data-icon="majesticons:door-exit"></span>
+                    <span class="iconify" data-width="25" data-icon="solar:logout-2-bold"></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Keluar</span>
                 </a>
             </li>

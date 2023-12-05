@@ -46,6 +46,14 @@
 
     {{-- Table --}}
     <div class="mt-5 mb-5 relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="mb-3">
+            @if (session('error'))
+            <x-alert.error-alert message="{{session('error')}}"/>
+            @endif
+            @if (session('success'))
+            <x-alert.success-alert message="{{session('success')}}"/>
+            @endif
+        </div>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -116,7 +124,7 @@
                         {{$kelas->matakuliah->semester}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$kelas->kuota}}
+                        {{$kelas->kelasmahasiswa->count()}}/{{$kelas->kuota}}
                     </td>
                     <td class="px-6 py-4 flex items-center action-icons">
                         <a href="{{route('kelas.show', $kelas->id)}}" class="">

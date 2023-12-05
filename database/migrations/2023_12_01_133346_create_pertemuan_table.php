@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jadwal', function (Blueprint $table) {
+        Schema::create('pertemuan', function (Blueprint $table) {
             $table->id();
+            $table->integer('pertemuan');
             $table->foreignId('id_kelas')->constrained('kelas')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->enum('hari',['Senin','Selasa','Rabu','Kamis','Jumat']);
+            $table->date('tanggal')->default(now());
             $table->time('mulai');
             $table->time('selesai');
-            $table->string('ruangan');
-            $table->enum('jenis', ['T','P']);
+            $table->text('materi')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jadwal');
+        Schema::dropIfExists('pertemuan');
     }
 };

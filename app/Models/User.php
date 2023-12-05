@@ -23,7 +23,16 @@ class User extends Authenticatable
         'role'
     ];
 
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
+
     public function kelas(){
         return $this->hasMany(Kelas::class, 'id_dosen', 'id');
+    }
+
+    public static function getRoleValues(){
+        return ['dosen'];
     }
 }
