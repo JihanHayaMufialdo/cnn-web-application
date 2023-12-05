@@ -12,17 +12,43 @@
 <aside id="default-sidebar"
     class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
     aria-label="Sidebar">
+
+
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div class="logo">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="logo-unila" class="mt-5 w-16 h-16 mx-auto">
+            <hr class="mt-5 mb-3 border-t-2 border-gray-400 w-52 mx-auto">
+            <span class="ml-3 dark:text-white font-poppins font-semibold">
+                Selamat Datang
+            </span>
+            <br>
+            <span class="ml-3 dark:text-white font-poppins">
+                MR Kamal
+            </span>
+            <br>
+            <span class="ml-3 dark:text-white font-poppins">
+                21243632
+            </span>
+            <hr class="mt-3 mb-5 border-t-2 border-gray-300 w-52 mx-auto">
+        </div>
         <ul class="space-y-2 font-medium">
             <li>
-                <a href="{{route('dosen-dashboard')}}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="{{ route('dosen-dashboard') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group bg-indigo-100">
                     <span class="iconify" data-width="25" data-icon="ic:round-dashboard"></span>
                     <span class="ms-3">Beranda</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('dosen-kelas.index')}}"
+
+                <a href="#"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span class="iconify" data-width="25" data-icon="iconamoon:profile-fill"></span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Profil</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('dosen-kelas.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="iconify" data-width="25" data-icon="ic:round-class"></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Daftar Kelas</span>
@@ -44,4 +70,16 @@
             </li>
         </ul>
     </div>
+
+    <script>
+        $(document).ready(function() {
+
+            $('aside ul li a').on('click', function() {
+
+                $('aside ul li a').removeClass('bg-indigo-100');
+
+                $(this).addClass('bg-indigo-100');
+            });
+        });
+    </script>
 </aside>

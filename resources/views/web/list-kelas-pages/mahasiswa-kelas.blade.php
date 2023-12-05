@@ -1,22 +1,11 @@
 @extends('layout.dashboard-dosen-layout')
 
 @section('main')
-    <style>
-        .search {
-            width: 50%;
-        }
-    </style>
-    <div class="flex flex-wrap items-center justify-between">
-        <x-search.search />
-
-        <div class="mb-6">
-            <label for="dosen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen Pengajar</label>
-            <select id="dropdownSelect" name="dropdown" required
-                class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-            </select>
-        </div>
+    <div class="">
+        <select class="js-example-basic-multiple w-full md:w-1/2" name="states[]" multiple="multiple">
+            <option value="AL">Alabama</option>
+            <option value="WY">Wyoming</option>
+        </select>
     </div>
 
     {{-- Table --}}
@@ -51,7 +40,7 @@
                     <td class="px-6 py-4">
                         Agus
                     </td>
-                    <td href="#" class="">
+                    <td class="px-6 py-4">
                         <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
@@ -62,7 +51,7 @@
                     <td class="px-6 py-4">
                         Agus
                     </td>
-                    <td href="#" class="">
+                    <td class="px-6 py-4">
                         <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
@@ -73,7 +62,7 @@
                     <td class="px-6 py-4">
                         Agus
                     </td>
-                    <td href="#" class="">
+                    <td class="px-6 py-4">
                         <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
@@ -84,7 +73,7 @@
                     <td class="px-6 py-4">
                         Agus
                     </td>
-                    <td href="#" class="">
+                    <td class="px-6 py-4">
                         <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
@@ -95,7 +84,7 @@
                     <td class="px-6 py-4">
                         Agus
                     </td>
-                    <td href="#" class="">
+                    <td class="px-6 py-4">
                         <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
@@ -106,7 +95,7 @@
                     <td class="px-6 py-4">
                         Agus
                     </td>
-                    <td href="#" class="">
+                    <td class="px-6 py-4">
                         <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
@@ -117,7 +106,7 @@
                     <td class="px-6 py-4">
                         Agus
                     </td>
-                    <td href="#" class="">
+                    <td class="px-6 py-4">
                         <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
@@ -128,7 +117,7 @@
                     <td class="px-6 py-4">
                         Agus
                     </td>
-                    <td href="#" class="">
+                    <td class="px-6 py-4">
                         <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
@@ -139,19 +128,18 @@
                     <td class="px-6 py-4">
                         Agus
                     </td>
-                    <td href="#" class="">
+                    <td class="px-6 py-4">
                         <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         081211212
                     </th>
                     <td class="px-6 py-4">
                         Agus
                     </td>
-                    <td href="#" class="">
+                    <td class="px-6 py-4">
                         <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                     </td>
                 </tr>
@@ -196,3 +184,14 @@
         </nav>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({
+                placeholder: 'Select', // Placeholder yang ditampilkan
+                allowClear: true
+            });
+        });
+    </script>
+@endpush
