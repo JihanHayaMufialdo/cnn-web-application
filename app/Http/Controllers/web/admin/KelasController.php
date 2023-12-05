@@ -48,18 +48,6 @@ class KelasController extends Controller
      */
     public function store(KelasRequest $request)
     {
-        // $data = $request->validate([
-        //     'matakuliah' => 'required|exists:mata_kuliah,id',
-        //     'dosen' => 'required|exists:users,id'
-        // ]);
-
-        // $kelas = new Kelas($data);
-        // $kelas->id_matkul = $request->input('matakuliah');
-        // $kelas->id_dosen = $request->input('id_dosen');
-
-        // $kelas->save();
-
-        // return to_route('kelas.index')->with('success','Berhasil menambahkan kelas');
         $data = $request->validated();
 
         $kelas = new Kelas($data);
@@ -68,7 +56,7 @@ class KelasController extends Controller
 
         $kelas->save();
 
-        return redirect()->route('kelas.index')->with('success', 'Berhasil menambahkan kelas');
+        return to_route('kelas.index')->with('success','Berhasil menambahkan kelas');
     }
 
 
@@ -78,9 +66,18 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show(Kelas $kelas)
+    public function show(Kelas $kela)
     {
-        //
+        $data = [
+            'kelas' => $kela,
+            'title_page'   => 'Detail Data Kelas'
+        ];
+
+        return view('web.list-kelas-pages.detail-kelas-admin', $data);
+
+        // $kelas = Kelas::findOrFail($kela);
+
+        // return view('kelas.show', compact('kelas'));
     }
 
     /**
@@ -89,10 +86,10 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas)
+    public function edit(Kelas $kela)
     {
         $data = [
-            'kelas' => $kelas,
+            'kelas' => $kela,
             'title_page'   => 'Ubah Data Kelas'
         ];
 
@@ -106,11 +103,11 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(KelasRequest $request, Kelas $kelas)
+    public function update(KelasRequest $request, Kelas $kela)
     {
         $data =$request->validated();
 
-        $kelas->update($data);
+        $kela->update($data);
 
         return to_route('kelas.index')->with('success','Berhasil mengubah data kelas');
     }
@@ -121,8 +118,10 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy(Kelas $kela)
     {
-        //
+        $kela->delete();
+
+        return redirect()->route('kelas.index')->with('success', 'Berhasil menghapus data kelas');
     }
 }

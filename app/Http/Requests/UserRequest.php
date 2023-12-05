@@ -52,6 +52,7 @@ class UserRequest extends FormRequest
         return [
             'nama.required'                     => 'Nama dosen harus diisi',
             'nip.unique'                        => 'NIP telah terdaftar',
+            'role.required'                     => 'Role harus diisi',
             'username.required'                 => 'Akun pengguna harus diisi',
             'username.unique'                   => 'Akun pengguna sudah digunakan',
             'password.required'                 => 'Kata sandi harus diisi',
@@ -59,13 +60,13 @@ class UserRequest extends FormRequest
         ];
     }
 
-    // public function withValidator($validator)
-    // {
-    //     $validator->after(function ($validator) {
-    //         if ($validator->errors()->count() > 0) {
-    //             // Tampilkan seluruh pesan kesalahan
-    //             dd($validator->errors()->all());
-    //         }
-    //     });
-    // }
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if ($validator->errors()->count() > 0) {
+                // Tampilkan seluruh pesan kesalahan
+                dd($validator->errors()->all());
+            }
+        });
+    }
 }

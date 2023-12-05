@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Jadwal;
+use App\Models\Pertemuan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class JadwalSeeder extends Seeder
+class PertemuanSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,13 +15,12 @@ class JadwalSeeder extends Seeder
      */
     public function run()
     {
-        Jadwal::create([
-            'id_kelas'  => 2,
-            'hari'      => 'Senin',
+        Pertemuan::create([
+            'pertemuan' => 1,
+            'id_jadwal' => 1,
             'mulai'     => '09:20',
-            'selesai'   => '11:00',
-            'ruangan'   => 'GIK L1C',
-            'jenis'     => 'T'
+            'selesai'   => '10:00',
+            'materi'    => 'looping'
         ]);
     }
 }

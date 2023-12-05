@@ -48,6 +48,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        // dd($request->validated());
         $data = $request->validated();
 
         $data['password'] = bcrypt($data['password']);
