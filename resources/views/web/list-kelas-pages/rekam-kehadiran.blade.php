@@ -1,52 +1,81 @@
 @extends('layout.dashboard-dosen-layout')
 
 @section('main')
-    <video id="camera-view"></video>
-    <button id="capture"
-        class="bottom-5 left-5 active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Take</button>
-    <canvas id="output" class="hidden"></canvas>
-    <img id="result">
+    <video id="video" width="720" height="560" autoplay muted></video>
+    <canvas id="canvas" width="720" height="560"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1/dist/face-api.js"></script>
+
     <script>
-        const [camera_view, output, capture, result] = [
-            document.getElementById('camera-view'),
-            document.getElementById('output'),
-            document.getElementById('capture'),
-            document.getElementById('result')
-        ];
+        // Mendapatkan elemen video dan canvas
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
 
+        // Mengizinkan akses ke kamera pengguna
         navigator.mediaDevices.getUserMedia({
-            audio: false,
-            video: {
-                width: 360,
-                height: 360
-            }
-        })
-        .then((stream) => {
-            camera_view.srcObject = stream;
-            camera_view.play();
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+                video: {}
+            })
+            .then((stream) => {
+                video.srcObject = stream;
+            })
+            .catch((err) => {
+                console.error('Error accessing the camera:', err);
+            });
 
-        capture.addEventListener('click', () => {
-            const context = output.getContext('2d');
-            const randomFileName = 'captured_image_' + Math.random().toString(36).substring(2, 8) + '.png';
+        // Memuat model face-api.js dan melakukan face tracking
+        Promise.all([
+            faceapi.nets.blazeFace.load(),
+            faceapi.nets.faceLandmark68Net.load()
+        ]).then(async () => {
+            // Memulai face tracking ketika video telah dimuat
+            video.addEventListener('play', async () => {
+                const displaySize = {
+                    width: video.width,
+                    height: video.height
+                };
+                faceapi.matchDimensions(canvas, displaySize);
 
-            output.width = 360;
-            output.height = 360;
+                setInterval(async () => {
+                    const detections = await faceapi.detectAllFaces(video, new faceapi
+                        .BlazeFaceOptions()).withFaceLandmarks();
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            context.drawImage(camera_view, 0, 0, output.width, output.height);
-            result.src = output.toDataURL();
-            console.log(camera_view);
+                    // Menggambar hasil face tracking
+                    detections.forEach((detection) => {
+                        const box = detection.box;
+                        const x = box._x;
+                        const y = box._y;
+                        const width = box._width;
+                        const height = box._height;
 
-            // Menyimpan gambar ke localStorage
-            try {
-                localStorage.setItem(randomFileName, result.src);
-                alert('Image saved locally!');
-            } catch (e) {
-                console.error('LocalStorage is full or not available:', e);
-            }
+                        // Menggambar kotak sebagai bingkai untuk setiap wajah yang terdeteksi
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'blue'; // Warna garis kotak
+                        ctx.lineWidth = 2; // Ketebalan garis kotak
+                        ctx.rect(x, y, width, height);
+                        ctx.stroke();
+
+                        const landmarks = detection.landmarks._positions;
+                        for (let i = 0; i < landmarks.length; i++) {
+                            const x = landmarks[i]._x;
+                            const y = landmarks[i]._y;
+
+                            ctx.beginPath();
+                            ctx.fillStyle = 'red';
+                            ctx.arc(x, y, 1 /*radius*/ , 0, 2 * Math.PI);
+                            ctx.fill();
+                        }
+                    });
+
+                    console.log('Jumlah wajah terdeteksi:', detections
+                        .length); // Menampilkan jumlah wajah terdeteksi pada console
+                }, 100); // Interval waktu untuk face tracking
+            });
+        }).catch((err) => {
+            console.error('Error loading face-api.js models:', err);
         });
     </script>
 @endsection

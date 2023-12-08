@@ -1,4 +1,4 @@
-@extends('web.dashboards.dashboard-admin')
+@extends('layout.dashboard-admin-layout')
 
 @section('main')
     <form action="{{route('matakuliah.update', $matakuliah->id)}}" method="post">
