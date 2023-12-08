@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\web\admin\JadwalController;
 use App\Http\Controllers\web\admin\KelasController as AdminKelasController;
 use App\Http\Controllers\web\admin\KelasMahasiswaController;
+use App\Http\Controllers\web\admin\MahasiswaController;
 use App\Http\Controllers\web\admin\MataKuliahController;
 use App\Http\Controllers\web\admin\PertemuanController;
 use App\Http\Controllers\web\admin\UserController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return to_route('login');
 });
 
 Route::controller(AuthController::class)->group(function(){
@@ -48,7 +49,8 @@ Route::resources([
     'admin/kelasmahasiswa' => KelasMahasiswaController::class,
     'admin/jadwal'      => JadwalController::class,
     'admin/kelas.pertemuan'   => PertemuanController::class,
-    'dosen/dosen-kelas' => DosenKelasController::class
+    'dosen/dosen-kelas' => DosenKelasController::class,
+    'admin/mahasiswa' => MahasiswaController::class
 ]);
 
 // Route::middleware(['auth', 'role:dosen'])->group(function () {
@@ -107,10 +109,10 @@ Route::resources([
 //     return view('web.list-kelas-pages.form-edit-pertemuan', $data);
 // })->name('edit-pertemuan');
 
-// Route::get('/dosen/daftar-kelas/detail-kelas/edit-pertemuan/rekam-kehadiran', function(){
-//     $data = ['title_page' => 'Daftar Kelas'];
-//     return view('web.list-kelas-pages.rekam-kehadiran', $data);
-// })->name('rekam-kehadiran');
+Route::get('/dosen/daftar-kelas/detail-kelas/edit-pertemuan/rekam-kehadiran', function(){
+    $data = ['title_page' => 'Daftar Kelas'];
+    return view('web.list-kelas-pages.rekam-kehadiran', $data);
+})->name('rekam-kehadiran');
 
 // Route::get('/dosen/daftar-kelas/detail-kelas/mahasiswa-kelas', function(){
 //     $data = ['title_page' => 'Daftar Kelas'];
@@ -125,14 +127,16 @@ Route::resources([
 //     return view('web.list-kelas-pages.form-edit-kelas');
 // })->name('admin.edit-kelas');
 
-// Route::get('/admin/daftar-mahasiswa', function(){
-//     return view('web.list-mahasiswa-pages.daftar-mahasiswa');
-// })->name('admin.daftar-mahasiswa');
+// Route::controller(MahasiswaController::class)->group(function(){
+//     Route::get('/admin/daftar-mahasiswa', 'index')->name('admin.daftar-mahasiswa');
+// });
 
 // Route::get('/admin/daftar-mahasiswa/tambah-mahasiswa', function(){
-//     return view('web.list-mahasiswa-pages.form-tambah-mahasiswa');
+//     $data = ['title_page' => 'Daftar Mahasiswa'];
+//     return view('web.list-mahasiswa-pages.form-tambah-mahasiswa', $data);
 // })->name('admin.tambah-mahasiswa');
 
-Route::get('/admin/daftar-mahasiswa/edit-mahasiswa', function(){
-    return view('web.list-mahasiswa-pages.form-edit-mahasiswa');
-})->name('admin.edit-mahasiswa');
+// Route::get('/admin/daftar-mahasiswa/edit-mahasiswa', function(){
+//     $data = ['title_page' => 'Daftar Mahasiswa'];
+//     return view('web.list-mahasiswa-pages.form-edit-mahasiswa', $data);
+// })->name('admin.edit-mahasiswa');
