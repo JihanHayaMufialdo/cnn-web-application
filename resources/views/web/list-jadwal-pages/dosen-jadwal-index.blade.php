@@ -1,4 +1,4 @@
-@extends('layout.dashboard-admin-layout')
+@extends('layout.dashboard-dosen-layout')
 
 <style>
     .action-icons a {
@@ -38,12 +38,12 @@
     </form> --}}
 
     {{-- Button --}}
-    <div class="flex justify-end">
+    {{-- <div class="flex justify-end">
         <a type="button" href="{{ route('jadwal.create') }}"
             class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
             Tambah
         </a>
-    </div>
+    </div> --}}
 
     {{-- Table --}}
     <div class="mt-5 mb-5 relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -117,7 +117,7 @@
                         {{-- <a href="{{route('jadwal.show', $jadwal->id)}}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                         </a> --}}
-                        <a href="{{route('jadwal.edit', $jadwal->id)}}" class="">
+                        {{-- <a href="{{route('jadwal.edit', $jadwal->id)}}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
                         </a>
                         <form action="{{route('jadwal.destroy', $jadwal->id)}}" method="post">
@@ -127,7 +127,7 @@
                             ('Anda yakin ingin menghapus data jadwal kelas {{$jadwal->kelas->matakuliah->nama_mk}} ({{$jadwal->kelas->nama}}) ?')">
                                 <span class="iconify hover:text-neutral-300" data-width="25" data-icon="mdi:delete-outline"></span>
                             </button>
-                        </form>
+                        </form> --}}
                     </td>
                 </tr>
                 @empty

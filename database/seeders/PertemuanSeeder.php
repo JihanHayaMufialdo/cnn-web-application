@@ -17,7 +17,7 @@ class PertemuanSeeder extends Seeder
     {
         Pertemuan::create([
             'pertemuan' => 1,
-            'id_jadwal' => 1,
+            'id_kelas'  => 4,
             'mulai'     => '09:20',
             'selesai'   => '10:00',
             'materi'    => 'looping'

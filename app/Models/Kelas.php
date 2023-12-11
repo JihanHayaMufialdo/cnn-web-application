@@ -32,6 +32,10 @@ class Kelas extends Model
         return $this->hasMany(KelasMahasiswa::class, 'id_kelas', 'id');
     }
 
+    public function pertemuan(){
+        return $this-> hasMany(Pertemuan::class, 'id_kelas', 'id');
+    }
+
     public function jadwal(){
         return $this->hasMany(Jadwal::class, 'id_kelas','id');
     }
@@ -43,19 +47,4 @@ class Kelas extends Model
     public static function getKurikulumValues(){
         return ['2020'];
     }
-
-    public static function getMataKuliahValues(){
-        $mataKuliahValues = MataKuliah::pluck('nama_mk', 'id');
-        return $mataKuliahValues;
-    }
-
-    public static function getDosenValues(){
-        $dosenValues = User::where('role', 'dosen')->pluck('nama', 'id');
-        return $dosenValues;
-    }
-
-    // public static function getSemesterValues(){
-    //     $semesterValues = MataKuliah::pluck('semester', 'id');
-    //     return $semesterValues;
-    // }
 }

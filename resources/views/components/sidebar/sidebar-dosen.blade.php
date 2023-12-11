@@ -1,3 +1,8 @@
+@props([
+    'nama' => '',
+    'nip' => ''
+])
+
 <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
     type="button"
     class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -23,11 +28,11 @@
             </span>
             <br>
             <span class="ml-3 dark:text-white font-poppins">
-                MR Kamal
+                {{$nama}}
             </span>
             <br>
             <span class="ml-3 dark:text-white font-poppins">
-                21243632
+                {{$nip}}
             </span>
             <hr class="mt-3 mb-5 border-t-2 border-gray-300 w-52 mx-auto">
         </div>
@@ -55,7 +60,7 @@
                 </a>
             </li>
             <li>
-                <a href=""
+                <a href="{{ route('dosen-jadwal.index')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="iconify" data-width="25" data-icon="mingcute:time-fill"></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Daftar Jadwal</span>

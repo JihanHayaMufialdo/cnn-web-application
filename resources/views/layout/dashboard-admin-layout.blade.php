@@ -3,6 +3,7 @@
 @section('content')
     <div class="flex flex-col sm:flex-row">
         <x-sidebar.sidebar-admin />
+        {{-- :nama="{{$nama}}" :role="{{$role}}" --}}
 
         <div class="flex-1 p-4 sm:ml-64">
             <x-navbar.navbar title_page="{{$title_page}}" />

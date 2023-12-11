@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             // KelasMahasiswaSeeder::class,
             // JadwalSeeder::class,
             // PresensiSeeder::class,
-            // PertemuanSeeder::class
+            PertemuanSeeder::class
         ]);
     }
 }

@@ -11,8 +11,8 @@
                 class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800
                 @error('id_matkul') border-red-500 @enderror">
                 <option value="{{old('id_matkul')}}">Pilih mata kuliah</option>
-                @foreach (App\Models\Kelas::getMataKuliahValues() as $id => $nama_mk)
-                    <option value="{{ $id }}">{{ $nama_mk }}</option>
+                @foreach ($mata_kuliah as $matkul)
+                    <option value="{{ $matkul->id }}">{{ $matkul->nama_mk }}</option>
                 @endforeach
             </select>
         </div>
@@ -43,8 +43,8 @@
                 class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800
                 @error('id_dosen') border-red-500 @enderror">
                 <option value="{{old('id_dosen')}}">Pilih dosen pengampu</option>
-                @foreach (App\Models\Kelas::getDosenValues() as $id => $nama)
-                <option value="{{ $id }}">{{ $nama }}</option>
+                @foreach ($dosen as $dosen)
+                <option value="{{ $dosen->id }}">{{ $dosen->nama }}</option>
                 @endforeach
             </select>
         </div>

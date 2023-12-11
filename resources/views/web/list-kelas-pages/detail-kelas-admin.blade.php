@@ -72,8 +72,8 @@
                     class="text-black bg-gray-50 hover:bg-gray-100 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800
                     @error('id_mahasiswa') border-red-500 @enderror">
                     <option value="{{old('id_mahasiswa')}}">Pilih mahasiswa</option>
-                    @foreach (App\Models\KelasMahasiswa::getMahasiswaValues() as $id => $nama)
-                    <option value="{{ $id }}">{{ $nama }}</option>
+                    @foreach ($mahasiswa as $mahasiswa)
+                    <option value="{{ $mahasiswa->id }}">{{ $mahasiswa->nama }}</option>
                     @endforeach
                 </select>
                 @error('id_mahasiswa')
@@ -90,6 +90,12 @@
             </a>
         </div>
     </form>
+
+    {{-- <div class="flex flex-wrap items-center justify-start">
+        <a href="{{route('kelasmahasiswa.index')}}" class="ml-auto mb-2  active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
+            Lihat Mahasiswa
+        </a>
+    </div> --}}
 
     {{-- Table --}}
     <div class="mt-3 mb-5 relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -115,254 +121,61 @@
                         Jenis
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Aksi
                     </th>
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $i = 1;
+                @endphp
+                @forelse ($pertemuan as $pertemuan)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        1
+                        {{$pertemuan->pertemuan}}
                     </th>
                     <td class="px-6 py-4">
-                        07:30
+                        {{$pertemuan->tanggal}}
                     </td>
                     <td class="px-6 py-4">
-                        09:00
+                        {{\Carbon\Carbon::parse($pertemuan->mulai)->format('H:i')}}
                     </td>
                     <td class="px-6 py-4">
-                        Teori
+                        {{\Carbon\Carbon::parse($pertemuan->selesai)->format('H:i')}}
                     </td>
                     <td class="px-6 py-4">
-                        sifat-sifat logika
+                        {{$pertemuan->ruangan}}
                     </td>
                     <td class="px-6 py-4">
-                        GIK L1C
+                        {{$pertemuan->jenis}}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
+                        {{$pertemuan->status}}
+                    </td>
+                    <td class="px-6 py-4 flex items-center action-icons">
+                        <a href="{{route('kelas.pertemuan.show',['kela'=>$kelas->id, 'pertemuan'=>$pertemuan->id])}}" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
+                        </a>
+                        {{-- <a href="" class="">
+                            <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:edit"></span>
+                        </a> --}}
+                        {{-- <form action="" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="mt-1" onclick="return confirm('Anda yakin ingin menghapus data ?')">
+                                <span class="iconify hover:text-neutral-300" data-width="25" data-icon="mdi:delete-outline"></span>
+                            </button>
+                        </form> --}}
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        2
-                    </th>
-                    <td class="px-6 py-4">
-                        07:30
-                    </td>
-                    <td class="px-6 py-4">
-                        09:00
-                    </td>
-                    <td class="px-6 py-4">
-                        Teori
-                    </td>
-                    <td class="px-6 py-4">
-                        sifat-sifat logika
-                    </td>
-                    <td class="px-6 py-4">
-                        GIK L1C
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
-                    </td>
+                @empty
+                <tr>
+                    <td colspan="7">Tidak Ada Data</td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        3
-                    </th>
-                    <td class="px-6 py-4">
-                        07:30
-                    </td>
-                    <td class="px-6 py-4">
-                        09:00
-                    </td>
-                    <td class="px-6 py-4">
-                        Teori
-                    </td>
-                    <td class="px-6 py-4">
-                        sifat-sifat logika
-                    </td>
-                    <td class="px-6 py-4">
-                        GIK L1C
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        4
-                    </th>
-                    <td class="px-6 py-4">
-                        07:30
-                    </td>
-                    <td class="px-6 py-4">
-                        09:00
-                    </td>
-                    <td class="px-6 py-4">
-                        Teori
-                    </td>
-                    <td class="px-6 py-4">
-                        sifat-sifat logika
-                    </td>
-                    <td class="px-6 py-4">
-                        GIK L1C
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        07:30
-                    </td>
-                    <td class="px-6 py-4">
-                        09:00
-                    </td>
-                    <td class="px-6 py-4">
-                        Teori
-                    </td>
-                    <td class="px-6 py-4">
-                        sifat-sifat logika
-                    </td>
-                    <td class="px-6 py-4">
-                        GIK L1C
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        07:30
-                    </td>
-                    <td class="px-6 py-4">
-                        09:00
-                    </td>
-                    <td class="px-6 py-4">
-                        Praktikum
-                    </td>
-                    <td class="px-6 py-4">
-                        sifat-sifat logika
-                    </td>
-                    <td class="px-6 py-4">
-                        GIK L1C
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        07:30
-                    </td>
-                    <td class="px-6 py-4">
-                        09:00
-                    </td>
-                    <td class="px-6 py-4">
-                        Praktikum
-                    </td>
-                    <td class="px-6 py-4">
-                        sifat-sifat logika
-                    </td>
-                    <td class="px-6 py-4">
-                        GIK L1C
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        07:30
-                    </td>
-                    <td class="px-6 py-4">
-                        09:00
-                    </td>
-                    <td class="px-6 py-4">
-                        Praktikum
-                    </td>
-                    <td class="px-6 py-4">
-                        sifat-sifat logika
-                    </td>
-                    <td class="px-6 py-4">
-                        GIK L1C
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        07:30
-                    </td>
-                    <td class="px-6 py-4">
-                        09:00
-                    </td>
-                    <td class="px-6 py-4">
-                        Praktikum
-                    </td>
-                    <td class="px-6 py-4">
-                        sifat-sifat logika
-                    </td>
-                    <td class="px-6 py-4">
-                        GIK L1C
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        07:30
-                    </td>
-                    <td class="px-6 py-4">
-                        09:00
-                    </td>
-                    <td class="px-6 py-4">
-                        Praktikum
-                    </td>
-                    <td class="px-6 py-4">
-                        sifat-sifat logika
-                    </td>
-                    <td class="px-6 py-4">
-                        GIK L1C
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#"
-                            class="active:outline-none text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">Detail</a>
-                    </td>
-                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
