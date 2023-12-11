@@ -127,7 +127,7 @@
                         {{$kelas->kelasmahasiswa->count()}}/{{$kelas->kuota}}
                     </td>
                     <td class="px-6 py-4 flex items-center action-icons">
-                        <a href="{{route('kelas.show', $kelas->id)}}" class="">
+                        <a href="{{route('kelas.pertemuan.index', ['kela' => $kelas->id])}}" class="">
                             <span class="iconify hover:text-neutral-300" data-width="25" data-icon="tabler:eye"></span>
                         </a>
                         <a href="{{route('kelas.edit', $kelas->id)}}" class="">

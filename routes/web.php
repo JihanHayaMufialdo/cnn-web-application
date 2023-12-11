@@ -8,7 +8,11 @@ use App\Http\Controllers\web\admin\MahasiswaController;
 use App\Http\Controllers\web\admin\MataKuliahController;
 use App\Http\Controllers\web\admin\PertemuanController;
 use App\Http\Controllers\web\admin\UserController;
+use App\Http\Controllers\web\dosen\JadwalController as DosenJadwalController;
 use App\Http\Controllers\web\dosen\KelasController as DosenKelasController;
+use App\Http\Controllers\web\dosen\PertemuanController as DosenPertemuanController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +34,24 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'login_attempt'])->name('login-attempt');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/dosen', [AuthController::class, 'dashboard_dosen'])->name('dosen-dashboard');
+    Route::get('/admin', [AuthController::class, 'dashboard_admin'])->name('admin-dashboard');
 });
 
+// Route::middleware(['user'])->group(function () {
+    Route::resources([
+        'admin/user'        => UserController::class,
+        'admin/matakuliah'  => MataKuliahController::class,
+        'admin/kelas'       => AdminKelasController::class,
+        'admin/kelasmahasiswa' => KelasMahasiswaController::class,
+        'admin/jadwal'      => JadwalController::class,
+        'admin/kelas.pertemuan'   => PertemuanController::class,
+        'admin/mahasiswa' => MahasiswaController::class,
+        'dosen/dosen-kelas' => DosenKelasController::class,
+        'dosen/dosen-kelas.dosen-pertemuan' => DosenPertemuanController::class,
+        'dosen/dosen-jadwal' => DosenJadwalController::class
+    ]);
+// });
 Route::get('/dosen', function(){
     $data = ['title_page' => 'Dashboard'];
     return view('web.dashboards.dashboard-dosen', $data);
@@ -42,25 +62,15 @@ Route::get('/admin', function(){
     return view('web.dashboards.dashboard-admin', $data);
 })->name('admin-dashboard');
 
-Route::resources([
-    'admin/user'        => UserController::class,
-    'admin/matakuliah'  => MataKuliahController::class,
-    'admin/kelas'       => AdminKelasController::class,
-    'admin/kelasmahasiswa' => KelasMahasiswaController::class,
-    'admin/jadwal'      => JadwalController::class,
-    'admin/kelas.pertemuan'   => PertemuanController::class,
-    'dosen/dosen-kelas' => DosenKelasController::class,
-    'admin/mahasiswa' => MahasiswaController::class
-]);
 
 // Route::middleware(['auth', 'role:dosen'])->group(function () {
 //     Route::resources([
 
 //     ]);
 // });
-// Route::get('/admin/daftar-akun', function () {
-//     $data = ['title_page' => 'Daftar Akun'];
-//     return view('web.list-akun-pages.daftar-akun', $data);
+// Route::get('dosen/dosen-kelas/{dosen_kela}/dosen-pertemuan/{dosen_pertemuan}', function () {
+    // $data = ['title_page' => 'Daftar Akun'];
+    // return view('web.list-akun-pages.daftar-akun', $data);
 // })->name('daftar-akun');
 
 // Route::get('/admin/daftar-akun/form-tambah-akun', function () {

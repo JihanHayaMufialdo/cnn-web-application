@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class KelasMahasiswaRequest extends FormRequest
 {
@@ -23,9 +24,11 @@ class KelasMahasiswaRequest extends FormRequest
      */
     public function rules()
     {
+        // $id_kelas = Route::input('id_kelas');
         return [
             'id_kelas'      => 'required|integer',
-            'id_mahasiswa'  => 'required|integer|unique:kelas_mahasiswa,id_mahasiswa'
+            'id_mahasiswa'  => ['required','integer',
+            Rule::unique('kelas_mahasiswa', 'id_mahasiswa')->whereNull('id_kelas')->where('id_kelas', $this->id_kelas)]
         ];
     }
 
@@ -35,4 +38,5 @@ class KelasMahasiswaRequest extends FormRequest
             'id_mahasiswa.unique' => 'Mahasiswa telah terdaftar di kelas ini'
         ];
     }
+
 }

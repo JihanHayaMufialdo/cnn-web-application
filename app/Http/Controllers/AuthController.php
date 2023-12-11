@@ -19,12 +19,20 @@ class AuthController extends Controller
         }
 
         $user = User::where('username', $request->username)->firstOrFail();
+        // dd($user);
 
         Auth::login($user);
+
+        // if (!Auth::attempt($request->only(['username', 'password']))) {
+        //     return back()->with('error', 'Akun Pengguna atau Kata Sandi Anda tidak sesuai')->withInput($request->all());
+        // }
+
+        // $user = Auth::user();
 
         if($user->role == 'admin'){
             return to_route('admin-dashboard');
         }else if($user->role == 'dosen'){
+            // return view('layout.dosen-dashboard',$data);
             return to_route('dosen-dashboard');
         }
     }
@@ -34,4 +42,21 @@ class AuthController extends Controller
        return to_route('login');
     }
 
+    public function dashboard_dosen(){
+        $user = Auth::user();
+        $data = [
+            'title_page' => 'Dashboard',
+            'user'  => $user
+        ];
+        return view('web.dashboards.dashboard-dosen', $data);
+    }
+
+    public function dashboard_admin(){
+        $user = Auth::user();
+        $data = [
+            'title_page' => 'Dashboard',
+            'user'  => $user
+        ];
+        return view('web.dashboards.dashboard-admin', $data);
+    }
 }

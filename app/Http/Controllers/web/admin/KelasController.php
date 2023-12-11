@@ -5,6 +5,9 @@ namespace App\Http\Controllers\web\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KelasRequest;
 use App\Models\Kelas;
+use App\Models\Mahasiswa;
+use App\Models\MataKuliah;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -34,6 +37,8 @@ class KelasController extends Controller
     public function create()
     {
         $data = [
+            'mata_kuliah'  => MataKuliah::get(),
+            'dosen'        => User::where('role','dosen')->get(),
             'title_page'   => 'Tambah Data Kelas'
         ];
 
@@ -70,6 +75,7 @@ class KelasController extends Controller
     {
         $data = [
             'kelas' => $kela,
+            'mahasiswa' => Mahasiswa::get(),
             'title_page'   => 'Detail Data Kelas'
         ];
 

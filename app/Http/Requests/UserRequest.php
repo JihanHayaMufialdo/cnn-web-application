@@ -60,13 +60,13 @@ class UserRequest extends FormRequest
         ];
     }
 
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator) {
-            if ($validator->errors()->count() > 0) {
-                // Tampilkan seluruh pesan kesalahan
-                dd($validator->errors()->all());
-            }
-        });
-    }
+    // public function withValidator($validator)
+    // {
+    //     $validator->after(function ($validator) {
+    //         if ($validator->errors()->count() > 0) {
+    //             // Tampilkan seluruh pesan kesalahan
+    //             dd($validator->errors()->all());
+    //         }
+    //     });
+    // }
 }

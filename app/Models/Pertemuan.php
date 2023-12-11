@@ -13,14 +13,21 @@ class Pertemuan extends Model
 
     protected $fillable = [
         'pertemuan',
-        'id_jadwal',
+        'id_kelas',
         'tanggal',
         'mulai',
         'selesai',
-        'materi'
+        'materi',
+        'ruangan',
+        'jenis',
+        'status'
     ];
 
     public function kelas(){
         return $this->belongsTo(Kelas::class, 'id_kelas', 'id');
+    }
+
+    public static function getStatusValues(){
+        return ['Selesai','Belum'];
     }
 }

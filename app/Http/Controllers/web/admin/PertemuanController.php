@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kelas;
+use App\Models\Mahasiswa;
 use App\Models\Pertemuan;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,18 @@ class PertemuanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id_kelas)
+    public function index(Kelas $kela)
     {
-        $pertemuan = Pertemuan::where('id_kelas', $id_kelas)->get();
+        $pertemuan = Pertemuan::where('id_kelas', $kela->id)->get();
+
+        $data = [
+            'pertemuan' => $pertemuan,
+            'kelas' => $kela,
+            'mahasiswa' => Mahasiswa::get(),
+            'title_page' => 'Detail Kelas'
+        ];
+
+        return view('web.list-kelas-pages.detail-kelas-admin', $data);
     }
 
     /**
@@ -46,9 +56,15 @@ class PertemuanController extends Controller
      * @param  \App\Models\Pertemuan  $pertemuan
      * @return \Illuminate\Http\Response
      */
-    public function show(Pertemuan $pertemuan)
+    public function show(Kelas $kela, Pertemuan $pertemuan)
     {
-        //
+        $data = [
+            'pertemuan' => $pertemuan,
+            'kelas' => $kela,
+            'title_page'   => 'Detail Data Pertemuan'
+        ];
+
+        return view('web.list-kelas-pages.detail-pertemuan-admin', $data);
     }
 
     /**

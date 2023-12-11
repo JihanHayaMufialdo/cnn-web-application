@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\web\admin;
+namespace App\Http\Controllers\web\dosen;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\JadwalRequest;
 use App\Models\Jadwal;
-use App\Models\Kelas;
 use Illuminate\Http\Request;
-// use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalController extends Controller
 {
@@ -18,14 +16,18 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        $jadwal = Jadwal::get();
+        $dosen = Auth::user();
+
+        $kelas = $dosen->kelas->pluck('id')->toArray();
+
+        $jadwal = Jadwal::whereIn('id_kelas', $kelas)->get();
 
         $data = [
-            'data_jadwal'  => $jadwal,
-            'title_page'   => 'Daftar Jadwal'
+            'data_jadwal' => $jadwal,
+            'title_page' => 'Daftar Jadwal'
         ];
 
-        return view('web.list-jadwal-pages.jadwal-index', $data);
+        return view('web.list-jadwal-pages.dosen-jadwal-index', $data);
     }
 
     /**
@@ -35,12 +37,7 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        $data = [
-            'data_kelas'      => Kelas::get(),
-            'title_page' => 'Tambah Data Jadwal'
-        ];
-
-        return view('web.list-jadwal-pages.jadwal-create', $data);
+        //
     }
 
     /**
@@ -49,16 +46,9 @@ class JadwalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(JadwalRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
-
-        $jadwal = new Jadwal($data);
-        $jadwal->id_kelas = $data['id_kelas'];
-
-        $jadwal->save();
-
-        return to_route('jadwal.index')->with('success','Berhasil menambahkan jadwal');
+        //
     }
 
     /**
@@ -80,12 +70,7 @@ class JadwalController extends Controller
      */
     public function edit(Jadwal $jadwal)
     {
-        $data = [
-            'jadwal' => $jadwal,
-            'title_page' => 'Tambah Data Jadwal'
-        ];
-
-        return view('web.list-jadwal-pages.jadwal-edit', $data);
+        //
     }
 
     /**
@@ -95,13 +80,9 @@ class JadwalController extends Controller
      * @param  \App\Models\Jadwal  $jadwal
      * @return \Illuminate\Http\Response
      */
-    public function update(JadwalRequest $request, Jadwal $jadwal)
+    public function update(Request $request, Jadwal $jadwal)
     {
-        $data = $request->validated();
-
-        $jadwal->update($data);
-
-        return to_route('jadwal.index')->with('success','Berhasil mengubah data jadwal');
+        //
     }
 
     /**
@@ -112,8 +93,6 @@ class JadwalController extends Controller
      */
     public function destroy(Jadwal $jadwal)
     {
-        $jadwal->delete();
-
-        return redirect()->route('jadwal.index')->with('success', 'Berhasil menghapus data jadwal');
+        //
     }
 }
