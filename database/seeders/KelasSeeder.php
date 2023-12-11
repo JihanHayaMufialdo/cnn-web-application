@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Kelas;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +19,7 @@ class KelasSeeder extends Seeder
         Kelas::create([
             'nama'      => 'AB',
             'id_matkul' => '1',
-            'id_dosen'  => '9ac6396d-675b-4cc3-8762-f9c8020868e6',
+            'id_dosen'  => User::where('username', 'kajurilkom')->first()->id,
             'periode'   => '2023 Ganjil',
             'kurikulum' => '2020',
             'kuota'     => '50'
